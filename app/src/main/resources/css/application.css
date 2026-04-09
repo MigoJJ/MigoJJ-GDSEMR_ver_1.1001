@@ -1,0 +1,152 @@
+/* Global Variables */
+.root {
+    -fx-font-family: "Consolas", serif;
+    -fx-font-size: 13px;
+    
+    /* Sezane-esque Theme Colors */
+    primary-color: #1d2d44; /* Deep Navy */
+    primary-dark: #0f172a; /* Darker Navy */
+    secondary-color: #a63d40; /* Vintage Rust */
+    accent-color: #e9c46a; /* Mustard/Gold */
+    -fx-accent: secondary-color;
+    app-main-bg: linear-gradient(to bottom right, #fdfbf7, #f4efe3); /* Ecru/Cream gradient */
+    surface-color: #ffffff;
+    text-color: #1d2d44; /* Navy Text */
+    text-color-light: #f8fafc;
+    border-color: #e2e8f0;
+    -fx-background-color: app-main-bg;
+}
+
+/* Dark Theme Overrides */
+.root.dark-theme {
+    primary-color: #3b82f6;
+    primary-dark: #1e40af;
+    secondary-color: #ef4444;
+    -fx-accent: secondary-color;
+    app-main-bg: #0f172a;
+    surface-color: #1e293b;
+    text-color: #fff7e6;
+    text-color-light: #f8fafc;
+    border-color: #334155;
+}
+
+.root.gradient-theme {
+    primary-color: #b45309; /* Warm amber */
+    primary-dark: #92400e;
+    secondary-color: #f97316; /* Orange accent */
+    -fx-accent: secondary-color;
+    app-main-bg: linear-gradient(to bottom right, #fff7ed, #fff0d1);
+    surface-color: #fffaf3;
+    text-color: #1d2d44;
+    text-color-light: #0f172a;
+    border-color: #fcd34d;
+}
+
+/* Font Size Classes */
+.root.font-small { -fx-font-size: 13px; }
+.root.font-medium { -fx-font-size: 15px; }
+.root.font-large { -fx-font-size: 17px; }
+.root.font-xlarge { -fx-font-size: 19px; }
+
+/* General UI Styling */
+.button {
+    -fx-font-family: "Consolas", sans-serif;
+    -fx-font-size: 11px; /* ~33% reduction from 15px root */
+    -fx-background-color: primary-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 3; /* scaled down radius */
+    -fx-padding: 5 10 5 10; /* ~33% reduction in padding */
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: primary-dark;
+}
+
+.button:pressed {
+    -fx-background-color: derive(primary-dark, -10%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 1, 0, 0, 1) inset;
+}
+
+.button-accent {
+    -fx-background-color: secondary-color;
+}
+
+.button-accent:hover {
+    -fx-background-color: derive(secondary-color, -10%);
+}
+
+.menu-button {
+    -fx-font-family: "Consolas", sans-serif;
+    -fx-font-size: 11px;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: primary-color;
+    -fx-border-color: primary-color;
+    -fx-border-width: 1;
+    -fx-background-radius: 3;
+    -fx-padding: 5 10 5 10;
+    -fx-font-weight: bold; /* Match buttons for consistency */
+    -fx-font-style: italic;
+}
+
+.menu-button:hover {
+    -fx-background-color: #f1f5f9;
+}
+
+.tool-bar {
+    -fx-background-color: app-main-bg; /* Ecru background */
+    -fx-border-color: border-color;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8; /* Reduced from 12 */
+    -fx-spacing: 8; /* Reduced from 12 */
+}
+
+.text-area {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-control-inner-background: surface-color;
+    -fx-text-fill: primary-dark;
+    -fx-highlight-fill: secondary-color;
+    -fx-highlight-text-fill: white;
+}
+
+.root.dark-theme .menu-button,
+.root.dark-theme .menu-button .label {
+    -fx-text-fill: #000000;
+}
+
+.root.dark-theme .text-area {
+    -fx-text-fill: #ffffff;
+}
+
+.label,
+.text-field,
+.combo-box,
+.check-box,
+.radio-button,
+.menu,
+.menu-item,
+.menu-item .label {
+    -fx-text-fill: text-color;
+}
+
+
+.combo-box {
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-text-fill: primary-dark;
+}
+
+.text-field,
+.combo-box {
+    -fx-control-inner-background: surface-color;
+    -fx-prompt-text-fill: derive(text-color, 45%);
+}
+
+.separator {
+    -fx-orientation: vertical;
+}

@@ -1,0 +1,33 @@
+# --- 예외 허용 (GitHub에 올려야 하는 DB) ---
+src/main/resources/database/*.db
+!src/main/resources/database/abbreviations.db
+!src/main/resources/database/emr_templates.db
+!src/main/resources/database/prolist.db
+!app/src/main/resources/*.db
+
+# Gradle metadata
+**/.gradle/
+.gradle-tmp/
+caches/
+daemon/
+wrapper/dists/
+.github/workflows/
+
+# Build outputs
+**/build/
+**/bin/
+
+# Local logs and helpers
+*.log
+.aider*
+.codex/
+/main
+
+# IDE and OS artifacts
+.DS_Store
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/

@@ -1,0 +1,110 @@
+.pmh-root {
+    -fx-background-color: #f4f6f9; /* Clinical Light Gray */
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+.pmh-title {
+    -fx-text-fill: #1a1a1a;
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+}
+.pmh-grid {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 4;
+    -fx-padding: 15;
+    -fx-border-color: #d1d5db;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+.pmh-cell {
+    -fx-background-color: #f9fafb;
+    -fx-background-radius: 4;
+    -fx-padding: 10;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+}
+.pmh-cell:hover {
+    -fx-background-color: #edf2f7;
+    -fx-border-color: #cbd5e0;
+}
+.check-box {
+    -fx-text-fill: #1f2937;
+    -fx-font-weight: bold;
+}
+.text-area {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 11px;
+    -fx-text-fill: #000000;
+    -fx-background-color: white;
+    -fx-control-inner-background: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 3;
+}
+.text-area:focused {
+    -fx-border-color: #3b82f6;
+    -fx-effect: dropshadow(three-pass-box, rgba(59,130,246,0.2), 3, 0, 0, 0);
+}
+
+/* Highlighted Text Area (Tiny Yellow Gradient) */
+.text-area-highlighted {
+    -fx-control-inner-background: #FEFDE2;
+    -fx-background-color: linear-gradient(to bottom, #FEFDE2, #FEF9D2);
+    -fx-text-fill: black;
+}
+
+.pmh-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.pmh-output {
+    -fx-background-color: #fff7ed;
+    -fx-control-inner-background: #fff7ed;
+    -fx-text-fill: #111827;
+    -fx-border-color: #d97706;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-font-family: 'Consolas', monospace;
+    -fx-font-size: 12px;
+    -fx-padding: 8;
+}
+.pmh-btn {
+    -fx-background-radius: 4; -fx-border-radius: 4;
+    -fx-padding: 8 16 8 16; -fx-cursor: hand;
+    -fx-font-weight: bold; -fx-font-size: 11px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);
+}
+
+/* Van Gogh Palette */
+.btn-save { /* Starry Night Blue */
+    -fx-background-color: #1d3b72; -fx-text-fill: white; -fx-border-color: #162d58;
+}
+.btn-save:hover { -fx-background-color: #2a5298; }
+
+.btn-default { /* Sunflowers Yellow */
+    -fx-background-color: #fbbf24; -fx-text-fill: #3e2723; -fx-border-color: #d97706;
+}
+.btn-default:hover { -fx-background-color: #f59e0b; }
+
+.btn-clear { /* Cafe Terrace Orange */
+    -fx-background-color: #f97316; -fx-text-fill: white; -fx-border-color: #c2410c;
+}
+.btn-clear:hover { -fx-background-color: #ea580c; }
+
+.btn-copy { /* Almond Blossom Teal */
+    -fx-background-color: #2dd4bf; -fx-text-fill: #0f172a; -fx-border-color: #0d9488;
+}
+.btn-copy:hover { -fx-background-color: #14b8a6; }
+
+.btn-fmh { /* Irises Purple */
+    -fx-background-color: #8b5cf6; -fx-text-fill: white; -fx-border-color: #6d28d9;
+}
+.btn-fmh:hover { -fx-background-color: #7c3aed; }
+
+.btn-quit { /* Vineyard Red */
+    -fx-background-color: #ef4444; -fx-text-fill: white; -fx-border-color: #b91c1c;
+}
+.btn-quit:hover { -fx-background-color: #dc2626; }

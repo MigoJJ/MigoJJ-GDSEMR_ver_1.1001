@@ -1,0 +1,179 @@
+{
+  "numColumns": 4,
+  "categories": [
+    {
+      "name": "Hypertension",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Hypertension",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Dyslipidemia",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Dyslipidemia",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Diabetes Mellitus",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Diabetes Mellitus",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Thyroid Disease",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Thyroid Disease",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Asthma / COPD",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Asthma / COPD",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Pneumonia",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Pneumonia",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Tuberculosis (TB)",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Tuberculosis (TB)",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Cardiovascular Disease",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Cardiovascular Disease",
+      "type": "DISEASE"
+    },
+    {
+      "name": "AMI",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: AMI",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Angina Pectoris",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Angina Pectoris",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Arrhythmia",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Arrhythmia",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Cerebrovascular Disease (CVA)",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Cerebrovascular Disease (CVA)",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Parkinson's Disease",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Parkinson's Disease",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Cognitive Disorder",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Cognitive Disorder",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Hearing Loss",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Hearing Loss",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Chronic Kidney Disease (CKD)",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Chronic Kidney Disease (CKD)",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Gout",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Gout",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Arthritis",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Arthritis",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Cancer Hx",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Cancer Hx",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Operation Hx",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Operation Hx",
+      "type": "OPERATION"
+    },
+    {
+      "name": "GERD",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: GERD",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Hepatitis A / B",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: Hepatitis A / B",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Depression",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Depression",
+      "type": "DISEASE"
+    },
+    {
+      "name": "Allergy",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Allergy",
+      "type": "ALLERGY"
+    },
+    {
+      "name": "Food Allergy",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Food Allergy",
+      "type": "ALLERGY"
+    },
+    {
+      "name": "Injection Allergy",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Injection Allergy",
+      "type": "ALLERGY"
+    },
+    {
+      "name": "Medication Allergy",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Medication Allergy",
+      "type": "ALLERGY"
+    },
+    {
+      "name": "All denied allergies...Food, Medication, Injection",
+      "defaultDotTarget": true,
+      "tooltip": "Select if applicable: All denied allergies...Food, Medication, Injection",
+      "type": "ALLERGY"
+    },
+    {
+      "name": "Others",
+      "defaultDotTarget": false,
+      "tooltip": "Select if applicable: Others",
+      "type": "ETC"
+    }
+  ]
+}

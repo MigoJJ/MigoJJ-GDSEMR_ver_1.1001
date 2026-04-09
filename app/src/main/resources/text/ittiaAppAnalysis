@@ -1,0 +1,102 @@
+Got it 👍 I unpacked your uploaded file **`Ittia.zip`** and analyzed the project.
+Here’s a **summary list** of its structure and purpose:
+
+---
+
+## 📦 **Project Analysis: Ittia.zip**
+
+### 1. **Overall Purpose**
+
+* Prototype of an **EMR (Electronic Medical Record) application** called **GDSEMRittia**.
+* Built for **physicians**, focusing on:
+
+  * Simplified text input
+  * Abbreviation expansion
+  * Generating standardized letters
+  * Reducing time spent on manual documentation
+
+---
+
+### 2. **Technology Stack**
+
+* **Java** (main programming language)
+* **JavaFX** (primary UI framework, replacing Swing in newer parts)
+* **SQLite** (local database for abbreviations, problem lists, ICD codes, etc.)
+* **Gradle multi-module** build (app, utilities, list, build-logic)
+
+---
+
+### 3. **Main Features**
+
+* **Text Area Management**
+
+  * 10 central EMR sections (CC, PI, ROS, PMH, S, O, PE, A, P, Comment)
+  * Abbreviation auto-expansion (e.g., "\:cd" → current date)
+  * Focus switching and double-click expansion
+
+* **Problem List Management**
+
+  * SQLite-backed DB (`prolist.db`) for managing diagnoses
+  * F/U (follow-up) templates and editing functions
+
+* **Template System**
+
+  * Pre-defined **SOAP** (Subjective, Objective, Assessment, Plan) note structures
+  * Letter generation for patient documentation
+
+* **Bridge System (`IttiaAppMain`)**
+
+  * Connects UI components (10 TextAreas) with helper dialogs and modules
+  * Ensures consistency across the EMR
+
+* **Helper Modules**
+
+  * `EMRPMH` (Past Medical History manager)
+  * `ChiefComplaintEditor`
+  * `FreqInputFrame` (Vitals, BMI, HbA1c calculator)
+  * `VaccineSideEffect` (adverse effect tracker)
+
+---
+
+### 4. **Databases**
+
+* **Abbreviation DB** (`abbreviations.db`) – expands shorthand into medical terms.
+* **Problem List DB** (`prolist.db`) – structured follow-up problems.
+* **ICD/KCD DBs** (e.g., `icd11.db`, `kcd8db.db`) – for diagnostic coding.
+
+---
+
+### 5. **Directory Structure**
+
+* **`app/`** → main EMR application code (JavaFX).
+* **`list/`** → data structures (problem lists, disease codes).
+* **`utilities/`** → common utility classes (DB managers, converters).
+* **`build-logic/`** → custom Gradle convention plugins.
+* **`resources/`** → databases (`.db`), templates, images.
+
+---
+
+### 6. **UI Design Principles**
+
+* Minimal, physician-friendly layout.
+* Toolbar with quick-action buttons (Vitals, Templates, Copy All).
+* Abbreviation expansion **in-place** (reduces typing effort).
+* Style themes (Sky Blue, Lemon gradient, Van Gogh-inspired).
+
+---
+
+### 7. **Current Development Focus**
+
+* Migrating from Swing → JavaFX (`IttiaAppTextArea`, `IAMTextArea`).
+* Improving **TextArea manager** with better parsing and formatting.
+* Enhancing **template insertion** and **auto-format** functions.
+* Managing `.gitignore` rules for DB files (keep some in repo, ignore others).
+
+---
+
+✅ **In summary**:
+This project is an **EMR prototype** built with **JavaFX + SQLite**, structured in a **Gradle multi-module** setup. Its main innovations are in **text entry simplification (abbreviation expansion, templates, SOAP structure)** and **integration of helper medical modules** (problem list, vitals, vaccines, ICD/KCD databases).
+
+---
+
+👉 Do you want me to also make a **visual directory tree** of the project (like `tree` output) so you see the full layout at a glance?

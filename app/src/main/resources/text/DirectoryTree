@@ -1,0 +1,79 @@
+프로젝트는 다음과 같은 모듈로 구성됩니다.
+
+GDSEMRittia/ (Root Project)
+├── app/          # 메인 애플리케이션 모듈
+├── list/         # 데이터 구조 라이브러리 모듈 (예: LinkedList)
+├── utilities/    # 공통 유틸리티 라이브러리 모듈 (예: StringUtils)
+├── build-logic/  # Gradle 컨벤션 플러그인을 통한 빌드 로직 중앙 관리
+├── gradle/       # Gradle Wrapper 및 버전 카탈로그
+└── gradlew       # Gradle 실행 스크립트
+-------------------------------------------------------------------
+전체 빌드: 프로젝트 루트 디렉토리에서 아래 명령어를 실행하면 모든 모듈이 빌드됩니다.
+Bash
+./gradlew build
+./gradlew :app:run
+-------------------------------------------------------------------
+Project Explanation
+
+  This project, named GDSEMRittia, is a Java-based Electronic Medical Record (EMR) application. It's built using 
+  Gradle as a multi-project build, composed of three main modules:
+
+   * `:app`: This is the core module of the application, containing the main entry point (com.emr.gds.IttiaApp) and 
+     the primary business logic. It utilizes JavaFX for its graphical user interface (GUI) and SQLite for database 
+     operations, suggesting it's a desktop application. The presence of files like IAFMainEdit.java and directories 
+     like fourgate and soap point towards specific EMR functionalities, possibly related to patient records, 
+     assessments, and treatment plans.
+   * `:utilities`: This module provides common utility functions used across the application. It has a dependency on 
+     the :list module, indicating it might use the custom data structures defined there.
+   * `:list`: This module likely defines custom data structures, such as the LinkedList class found in its source 
+     code. These data structures are then used by the other modules.
+
+  The project uses a build-logic module to manage common build configurations, ensuring consistency across the 
+  different sub-projects.
+
+  Architecture Diagram
+
+  Here is a diagram illustrating the architecture of the GDSEMR project:
+
+    1 graph TD
+    2     subgraph GDSEMRittia
+    3         direction LR
+    4         subgraph app
+    5             direction TB
+    6             IttiaApp[IttiaApp.java] --> IAMCenterPaneManager[IAMCenterPaneManager.java]
+    7             IAMCenterPaneManager --> IAFMainEdit[IAFMainEdit.java]
+    8             IAMCenterPaneManager --> soap[SOAP Note Editors]
+    9             IAMCenterPaneManager --> fourgate[Four Gate Evals]
+   10         end
+   11 
+   12         subgraph utilities
+   13             direction TB
+   14             JoinUtils[JoinUtils.java]
+   15             SplitUtils[SplitUtils.java]
+   16             StringUtils[StringUtils.java]
+   17         end
+   18 
+   19         subgraph list
+   20             direction TB
+   21             LinkedList[LinkedList.java]
+   22         end
+   23     end
+   24 
+   25     app --> utilities
+   26     app --> list
+   27     utilities --> list
+   28 
+   29     subgraph External Dependencies
+   30         direction TB
+   31         JavaFX
+   32         SQLite
+   33         Logback
+   34     end
+   35 
+   36     app --> JavaFX
+   37     app --> SQLite
+   38     app --> Logback
+   39 
+   40     style app fill:#f9f,stroke:#333,stroke-width:2px
+   41     style utilities fill:#ccf,stroke:#333,stroke-width:2px
+   42     style list fill:#cfc,stroke:#333,stroke-width:2px

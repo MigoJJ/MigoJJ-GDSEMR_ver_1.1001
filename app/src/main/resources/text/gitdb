@@ -1,0 +1,12 @@
+
+# 1. Force add all .db files (overrides .gitignore rules)
+git add -f *.db
+
+# 2. Check status to ensure they are staged
+git status
+
+# 3. Commit the changes
+git commit -m "Force add database files"
+
+# 4. Push to the remote repository
+git push origin main

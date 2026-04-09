@@ -1,0 +1,270 @@
+Category,Test Name,Unit,Male Range Low,Male Range High,Female Range Low,Female Range High,Male Reference Range,Female Reference Range
+Hematology,Hemoglobin (Hgb),g/dL,13.5,17.5,12.0,15.5,13.5 - 17.5 g/dL,12 - 15.5 g/dL
+Hematology,Hematocrit (Hct),%,38.8,50.0,34.9,44.5,38.8 - 50 %,34.9 - 44.5 %
+Hematology,RBC Count,×10⁶/μL,4.5,5.9,4.0,5.2,4.5 - 5.9 ×10⁶/μL,4 - 5.2 ×10⁶/μL
+Hematology,WBC Count,×10³/μL,4.5,11.0,4.5,11.0,4.5 - 11 ×10³/μL,4.5 - 11 ×10³/μL
+Hematology,Platelet Count,×10³/μL,150.0,400.0,150.0,400.0,150 - 400 ×10³/μL,150 - 400 ×10³/μL
+Hematology,MCV,fL,80.0,100.0,80.0,100.0,80 - 100 fL,80 - 100 fL
+Hematology,MCH,pg,27.0,33.0,27.0,33.0,27 - 33 pg,27 - 33 pg
+Hematology,MCHC,g/dL,32.0,36.0,32.0,36.0,32 - 36 g/dL,32 - 36 g/dL
+Chemistry,Glucose (Fasting),mg/dL,70.0,100.0,70.0,100.0,70 - 100 mg/dL,70 - 100 mg/dL
+Chemistry,BUN (Blood Urea Nitrogen),mg/dL,7.0,20.0,7.0,20.0,7 - 20 mg/dL,7 - 20 mg/dL
+Chemistry,Creatinine,mg/dL,0.7,1.3,0.6,1.1,0.7 - 1.3 mg/dL,0.6 - 1.1 mg/dL
+Chemistry,Sodium (Na),mEq/L,136.0,145.0,136.0,145.0,136 - 145 mEq/L,136 - 145 mEq/L
+Chemistry,Potassium (K),mEq/L,3.5,5.0,3.5,5.0,3.5 - 5 mEq/L,3.5 - 5 mEq/L
+Chemistry,Chloride (Cl),mEq/L,98.0,107.0,98.0,107.0,98 - 107 mEq/L,98 - 107 mEq/L
+Chemistry,Calcium (Ca),mg/dL,8.5,10.5,8.5,10.5,8.5 - 10.5 mg/dL,8.5 - 10.5 mg/dL
+Chemistry,Total Protein,g/dL,6.0,8.3,6.0,8.3,6 - 8.3 g/dL,6 - 8.3 g/dL
+Chemistry,Albumin,g/dL,3.5,5.5,3.5,5.5,3.5 - 5.5 g/dL,3.5 - 5.5 g/dL
+Liver Function,ALT (SGPT),U/L,7.0,56.0,7.0,56.0,7 - 56 U/L,7 - 56 U/L
+Liver Function,AST (SGOT),U/L,10.0,40.0,10.0,40.0,10 - 40 U/L,10 - 40 U/L
+Liver Function,ALP (Alkaline Phosphatase),U/L,44.0,147.0,44.0,147.0,44 - 147 U/L,44 - 147 U/L
+Liver Function,Total Bilirubin,mg/dL,0.1,1.2,0.1,1.2,0.1 - 1.2 mg/dL,0.1 - 1.2 mg/dL
+Liver Function,Direct Bilirubin,mg/dL,0.0,0.3,0.0,0.3,0 - 0.3 mg/dL,0 - 0.3 mg/dL
+Liver Function,GGT,U/L,8.0,61.0,5.0,36.0,8 - 61 U/L,5 - 36 U/L
+Lipid Panel,Total Cholesterol,mg/dL,0.0,200.0,0.0,200.0,0 - 200 mg/dL,0 - 200 mg/dL
+Lipid Panel,LDL Cholesterol,mg/dL,0.0,100.0,0.0,100.0,0 - 100 mg/dL,0 - 100 mg/dL
+Lipid Panel,HDL Cholesterol,mg/dL,40.0,999.0,50.0,999.0,40 - 999 mg/dL,50 - 999 mg/dL
+Lipid Panel,Triglycerides,mg/dL,0.0,150.0,0.0,150.0,0 - 150 mg/dL,0 - 150 mg/dL
+Thyroid,TSH,μIU/mL,0.4,4.0,0.4,4.0,0.4 - 4 μIU/mL,0.4 - 4 μIU/mL
+Thyroid,Free T4,ng/dL,0.8,1.8,0.8,1.8,0.8 - 1.8 ng/dL,0.8 - 1.8 ng/dL
+Thyroid,Free T3,pg/mL,2.3,4.2,2.3,4.2,2.3 - 4.2 pg/mL,2.3 - 4.2 pg/mL
+Cardiac,Troponin I,ng/mL,0.0,0.04,0.0,0.04,0 - 0.04 ng/mL,0 - 0.04 ng/mL
+Cardiac,CK-MB,ng/mL,0.0,5.0,0.0,5.0,0 - 5 ng/mL,0 - 5 ng/mL
+Cardiac,BNP,pg/mL,0.0,100.0,0.0,100.0,0 - 100 pg/mL,0 - 100 pg/mL
+Coagulation,PT (Prothrombin Time),seconds,11.0,13.5,11.0,13.5,11 - 13.5 seconds,11 - 13.5 seconds
+Coagulation,INR,ratio,0.8,1.2,0.8,1.2,0.8 - 1.2 ratio,0.8 - 1.2 ratio
+Coagulation,aPTT,seconds,25.0,35.0,25.0,35.0,25 - 35 seconds,25 - 35 seconds
+Diabetes,HbA1c,%,4.0,5.6,4.0,5.6,4 - 5.6 %,4 - 5.6 %
+Vitamins,Vitamin D (25-OH),ng/mL,30.0,100.0,30.0,100.0,30 - 100 ng/mL,30 - 100 ng/mL
+Vitamins,Vitamin B12,pg/mL,200.0,900.0,200.0,900.0,200 - 900 pg/mL,200 - 900 pg/mL
+Vitamins,Folate,ng/mL,2.7,17.0,2.7,17.0,2.7 - 17 ng/mL,2.7 - 17 ng/mL
+Vitamins,Iron,μg/dL,60.0,170.0,50.0,150.0,60 - 170 μg/dL,50 - 150 μg/dL
+Vitamins,Ferritin,ng/mL,24.0,336.0,11.0,307.0,24 - 336 ng/mL,11 - 307 ng/mL
+Inflammation,ESR (Sedimentation Rate),mm/hr,0.0,15.0,0.0,20.0,0 - 15 mm/hr,0 - 20 mm/hr
+Inflammation,C-Reactive Protein (CRP),mg/L,0.0,10.0,0.0,10.0,0 - 10 mg/L,0 - 10 mg/L
+Pancreatic,Amylase,U/L,40.0,140.0,40.0,140.0,40 - 140 U/L,40 - 140 U/L
+Pancreatic,Lipase,U/L,0.0,160.0,0.0,160.0,0 - 160 U/L,0 - 160 U/L
+Chemistry,Magnesium (Mg),mg/dL,1.7,2.2,1.7,2.2,1.7 - 2.2 mg/dL,1.7 - 2.2 mg/dL
+Chemistry,Phosphorus (Phos),mg/dL,2.5,4.5,2.5,4.5,2.5 - 4.5 mg/dL,2.5 - 4.5 mg/dL
+Chemistry,Uric Acid,mg/dL,3.5,7.2,2.6,6.0,3.5 - 7.2 mg/dL,2.6 - 6.0 mg/dL
+Chemistry,Lactic Acid (Lactate),mmol/L,0.5,2.2,0.5,2.2,0.5 - 2.2 mmol/L,0.5 - 2.2 mmol/L
+Hormone,Testosterone (Total),ng/dL,270.0,1070.0,15.0,70.0,270 - 1070 ng/dL,15 - 70 ng/dL
+Hormone,Cortisol (AM),mcg/dL,6.0,23.0,6.0,23.0,6 - 23 mcg/dL,6 - 23 mcg/dL
+Hormone,DHEA-Sulfate,μg/dL,80.0,560.0,35.0,430.0,80 - 560 μg/dL,35 - 430 μg/dL
+Iron Studies,TIBC,μg/dL,250.0,450.0,250.0,450.0,250 - 450 μg/dL,250 - 450 μg/dL
+Iron Studies,Transferrin,mg/dL,200.0,360.0,200.0,360.0,200 - 360 mg/dL,200 - 360 mg/dL
+Coagulation,Fibrinogen,mg/dL,200.0,400.0,200.0,400.0,200 - 400 mg/dL,200 - 400 mg/dL
+Coagulation,D-Dimer,ng/mL,0.0,500.0,0.0,500.0,0 - 500 ng/mL,0 - 500 ng/mL
+Cardiac,Homocysteine,μmol/L,4.0,15.0,4.0,15.0,4 - 15 μmol/L,4 - 15 μmol/L
+Cancer Marker,PSA (Total),ng/mL,0.0,4.0,0.0,0.0,0 - 4 ng/mL,N/A
+Cancer Marker,CEA,ng/mL,0.0,3.0,0.0,3.0,0 - 3 ng/mL,0 - 3 ng/mL
+Urinalysis,Specific Gravity,ratio,1.005,1.03,1.005,1.03,1.005 - 1.030 ratio,1.005 - 1.030 ratio
+Urinalysis,Urine pH,pH,4.6,8.0,4.6,8.0,4.6 - 8.0 pH,4.6 - 8.0 pH
+Hormone,FSH (Follicle Stimulating Hormone),mIU/mL,1.5,12.4,3.5,21.5,1.5 - 12.4 mIU/mL,3.5 - 21.5 mIU/mL (Cycling)
+Hormone,LH (Luteinizing Hormone),mIU/mL,1.7,8.6,2.4,12.6,1.7 - 8.6 mIU/mL,2.4 - 12.6 mIU/mL (Cycling)
+Hormone,Estradiol (E2),pg/mL,10.0,40.0,30.0,400.0,10 - 40 pg/mL,30 - 400 pg/mL (Cycling)
+Hormone,Progesterone,ng/mL,0.0,0.5,0.1,25.0,0 - 0.5 ng/mL,0.1 - 25 ng/mL (Cycling)
+Hormone,Prolactin,ng/mL,4.0,15.2,4.0,23.3,4 - 15.2 ng/mL,4 - 23.3 ng/mL
+Hormone,Growth Hormone (GH),ng/mL,0.0,5.0,0.0,10.0,0 - 5 ng/mL,0 - 10 ng/mL
+Hormone,IGF-1 (Somatomedin C),ng/mL,115.0,355.0,115.0,355.0,115 - 355 ng/mL,115 - 355 ng/mL
+Hormone,ACTH,pg/mL,7.0,63.0,7.0,63.0,7 - 63 pg/mL,7 - 63 pg/mL
+Hormone,Aldosterone (Upright),ng/dL,4.0,31.0,4.0,31.0,4 - 31 ng/dL,4 - 31 ng/dL
+Hormone,Renin Activity,ng/mL/hr,0.6,4.3,0.6,4.3,0.6 - 4.3 ng/mL/hr,0.6 - 4.3 ng/mL/hr
+Hormone,Parathyroid Hormone (PTH),pg/mL,15.0,65.0,15.0,65.0,15 - 65 pg/mL,15 - 65 pg/mL
+Hormone,Calcitonin,pg/mL,0.0,8.4,0.0,5.0,0 - 8.4 pg/mL,0 - 5.0 pg/mL
+Hormone,Insulin (Fasting),μU/mL,2.6,24.9,2.6,24.9,2.6 - 24.9 μU/mL,2.6 - 24.9 μU/mL
+Hormone,C-Peptide,ng/mL,1.1,4.4,1.1,4.4,1.1 - 4.4 ng/mL,1.1 - 4.4 ng/mL
+Hormone,SHBG (Sex Hormone Binding Globulin),nmol/L,10.0,57.0,18.0,144.0,10 - 57 nmol/L,18 - 144 nmol/L
+Hormone,Androstenedione,ng/dL,40.0,150.0,30.0,200.0,40 - 150 ng/dL,30 - 200 ng/dL
+Hormone,17-OH Progesterone,ng/dL,27.0,199.0,15.0,290.0,27 - 199 ng/dL,15 - 290 ng/dL
+Hormone,Gastrin,pg/mL,0.0,100.0,0.0,100.0,0 - 100 pg/mL,0 - 100 pg/mL
+Hormone,Erythropoietin (EPO),mIU/mL,2.6,18.5,2.6,18.5,2.6 - 18.5 mIU/mL,2.6 - 18.5 mIU/mL
+Hormone,ADH (Vasopressin),pg/mL,0.0,4.7,0.0,4.7,0 - 4.7 pg/mL,0 - 4.7 pg/mL
+Proteins,Immunoglobulin G (IgG),mg/dL,700.0,1600.0,700.0,1600.0,700 - 1600 mg/dL,700 - 1600 mg/dL
+Proteins,Immunoglobulin A (IgA),mg/dL,70.0,400.0,70.0,400.0,70 - 400 mg/dL,70 - 400 mg/dL
+Proteins,Immunoglobulin M (IgM),mg/dL,40.0,230.0,40.0,230.0,40 - 230 mg/dL,40 - 230 mg/dL
+Proteins,Immunoglobulin E (IgE) Total,IU/mL,0.0,100.0,0.0,100.0,0 - 100 IU/mL,0 - 100 IU/mL
+Proteins,Complement C3,mg/dL,90.0,180.0,90.0,180.0,90 - 180 mg/dL,90 - 180 mg/dL
+Proteins,Complement C4,mg/dL,10.0,40.0,10.0,40.0,10 - 40 mg/dL,10 - 40 mg/dL
+Proteins,Alpha-1 Antitrypsin,mg/dL,90.0,200.0,90.0,200.0,90 - 200 mg/dL,90 - 200 mg/dL
+Proteins,Ceruloplasmin,mg/dL,16.0,45.0,16.0,45.0,16 - 45 mg/dL,16 - 45 mg/dL
+Proteins,Haptoglobin,mg/dL,30.0,200.0,30.0,200.0,30 - 200 mg/dL,30 - 200 mg/dL
+Proteins,Prealbumin,mg/dL,15.0,35.0,15.0,35.0,15 - 35 mg/dL,15 - 35 mg/dL
+Proteins,Beta-2 Microglobulin,mg/L,1.2,2.5,1.2,2.5,1.2 - 2.5 mg/L,1.2 - 2.5 mg/L
+Proteins,Cystatin C,mg/L,0.6,1.0,0.5,0.9,0.6 - 1.0 mg/L,0.5 - 0.9 mg/L
+Proteins,Myoglobin,ng/mL,0.0,85.0,0.0,85.0,0 - 85 ng/mL,0 - 85 ng/mL
+Proteins,Troponin T (High Sens),ng/L,0.0,14.0,0.0,14.0,0 - 14 ng/L,0 - 14 ng/L
+Proteins,NT-proBNP,pg/mL,0.0,125.0,0.0,125.0,0 - 125 pg/mL,0 - 125 pg/mL
+Thyroid,T3 (Total),ng/dL,80.0,200.0,80.0,200.0,80 - 200 ng/dL,80 - 200 ng/dL
+Thyroid,T4 (Total),μg/dL,4.5,11.2,4.5,11.2,4.5 - 11.2 μg/dL,4.5 - 11.2 μg/dL
+Thyroid,Reverse T3,ng/dL,8.0,25.0,8.0,25.0,8 - 25 ng/dL,8 - 25 ng/dL
+Thyroid,Thyroglobulin,ng/mL,1.4,29.2,1.4,29.2,1.4 - 29.2 ng/mL,1.4 - 29.2 ng/mL
+Thyroid,Thyroxine Binding Globulin (TBG),μg/mL,13.0,39.0,13.0,39.0,13 - 39 μg/mL,13 - 39 μg/mL
+Autoimmune,Anti-TPO Antibody,IU/mL,0.0,9.0,0.0,9.0,0 - 9 IU/mL,0 - 9 IU/mL
+Autoimmune,Anti-Thyroglobulin Antibody,IU/mL,0.0,4.0,0.0,4.0,0 - 4 IU/mL,0 - 4 IU/mL
+Autoimmune,Rheumatoid Factor (Quantitative),IU/mL,0.0,14.0,0.0,14.0,0 - 14 IU/mL,0 - 14 IU/mL
+Autoimmune,Anti-CCP,U/mL,0.0,20.0,0.0,20.0,0 - 20 U/mL,0 - 20 U/mL
+Autoimmune,ASLO Titer,IU/mL,0.0,200.0,0.0,200.0,0 - 200 IU/mL,0 - 200 IU/mL
+Autoimmune,ANA Titer (Screen),ratio,0.0,0.0,0.0,0.0,< 1:40 ratio,< 1:40 ratio
+Drug Monitor,Digoxin,ng/mL,0.8,2.0,0.8,2.0,0.8 - 2.0 ng/mL,0.8 - 2.0 ng/mL
+Drug Monitor,Lithium,mEq/L,0.6,1.2,0.6,1.2,0.6 - 1.2 mEq/L,0.6 - 1.2 mEq/L
+Drug Monitor,Phenytoin (Dilantin),μg/mL,10.0,20.0,10.0,20.0,10 - 20 μg/mL,10 - 20 μg/mL
+Drug Monitor,Valproic Acid,μg/mL,50.0,100.0,50.0,100.0,50 - 100 μg/mL,50 - 100 μg/mL
+Drug Monitor,Carbamazepine,μg/mL,4.0,12.0,4.0,12.0,4 - 12 μg/mL,4 - 12 μg/mL
+Drug Monitor,Theophylline,μg/mL,5.0,15.0,5.0,15.0,5 - 15 μg/mL,5 - 15 μg/mL
+Drug Monitor,Vancomycin (Trough),μg/mL,10.0,20.0,10.0,20.0,10 - 20 μg/mL,10 - 20 μg/mL
+Drug Monitor,Gentamicin (Trough),μg/mL,0.0,2.0,0.0,2.0,0 - 2 μg/mL,0 - 2 μg/mL
+Drug Monitor,Cyclosporine,ng/mL,100.0,400.0,100.0,400.0,100 - 400 ng/mL,100 - 400 ng/mL
+Drug Monitor,Tacrolimus,ng/mL,5.0,15.0,5.0,15.0,5 - 15 ng/mL,5 - 15 ng/mL
+Toxicology,Ethanol (Blood),mg/dL,0.0,0.0,0.0,0.0,0 mg/dL,0 mg/dL
+Toxicology,Acetaminophen,μg/mL,10.0,30.0,10.0,30.0,10 - 30 μg/mL,10 - 30 μg/mL
+Toxicology,Salicylate,mg/dL,2.0,10.0,2.0,10.0,2 - 10 mg/dL,2 - 10 mg/dL
+Toxicology,Lead (Whole Blood),μg/dL,0.0,5.0,0.0,5.0,0 - 5 μg/dL,0 - 5 μg/dL
+Toxicology,Mercury (Whole Blood),ng/mL,0.0,10.0,0.0,10.0,0 - 10 ng/mL,0 - 10 ng/mL
+Vitamins,Vitamin A (Retinol),μg/dL,32.0,78.0,32.0,78.0,32 - 78 μg/dL,32 - 78 μg/dL
+Vitamins,Vitamin E (Alpha-Tocopherol),mg/L,5.5,17.0,5.5,17.0,5.5 - 17 mg/L,5.5 - 17 mg/L
+Vitamins,Vitamin C (Ascorbic Acid),mg/dL,0.4,2.0,0.4,2.0,0.4 - 2.0 mg/dL,0.4 - 2.0 mg/dL
+Vitamins,Vitamin B1 (Thiamine),nmol/L,70.0,180.0,70.0,180.0,70 - 180 nmol/L,70 - 180 nmol/L
+Vitamins,Vitamin B6 (Pyridoxal Phosphate),ng/mL,5.0,50.0,5.0,50.0,5 - 50 ng/mL,5 - 50 ng/mL
+Vitamins,Zinc (Plasma),μg/dL,60.0,130.0,60.0,130.0,60 - 130 μg/dL,60 - 130 μg/dL
+Vitamins,Copper (Serum),μg/dL,70.0,140.0,80.0,155.0,70 - 140 μg/dL,80 - 155 μg/dL
+Vitamins,Selenium,ng/mL,95.0,190.0,95.0,190.0,95 - 190 ng/mL,95 - 190 ng/mL
+Metabolic,Ammonia (Plasma),μmol/L,16.0,53.0,16.0,53.0,16 - 53 μmol/L,16 - 53 μmol/L
+Metabolic,Osmolality (Serum),mOsm/kg,275.0,295.0,275.0,295.0,275 - 295 mOsm/kg,275 - 295 mOsm/kg
+Metabolic,Lactate Dehydrogenase (LDH),U/L,140.0,280.0,140.0,280.0,140 - 280 U/L,140 - 280 U/L
+Metabolic,Creatine Kinase (CPK Total),U/L,39.0,308.0,26.0,192.0,39 - 308 U/L,26 - 192 U/L
+Metabolic,Aldolase,U/L,2.0,7.5,2.0,7.5,2.0 - 7.5 U/L,2.0 - 7.5 U/L
+Metabolic,Angiotensin Converting Enzyme (ACE),U/L,9.0,67.0,9.0,67.0,9 - 67 U/L,9 - 67 U/L
+Metabolic,Fructosamine,μmol/L,200.0,285.0,200.0,285.0,200 - 285 μmol/L,200 - 285 μmol/L
+Lipid Adv,Apolipoprotein A1,mg/dL,104.0,202.0,108.0,225.0,104 - 202 mg/dL,108 - 225 mg/dL
+Lipid Adv,Apolipoprotein B,mg/dL,66.0,133.0,60.0,117.0,66 - 133 mg/dL,60 - 117 mg/dL
+Lipid Adv,Lipoprotein (a),mg/dL,0.0,30.0,0.0,30.0,0 - 30 mg/dL,0 - 30 mg/dL
+Lipid Adv,Lp-PLA2,ng/mL,0.0,200.0,0.0,200.0,0 - 200 ng/mL,0 - 200 ng/mL
+Coagulation,Antithrombin III Activity,%,80.0,120.0,80.0,120.0,80 - 120 %,80 - 120 %
+Coagulation,Protein C Activity,%,70.0,140.0,70.0,140.0,70 - 140 %,70 - 140 %
+Coagulation,Protein S Activity,%,70.0,140.0,60.0,130.0,70 - 140 %,60 - 130 %
+Coagulation,Factor VIII Activity,%,50.0,150.0,50.0,150.0,50 - 150 %,50 - 150 %
+Coagulation,Von Willebrand Factor Antigen,%,50.0,150.0,50.0,150.0,50 - 150 %,50 - 150 %
+Coagulation,Thrombin Time,seconds,12.0,14.0,12.0,14.0,12 - 14 seconds,12 - 14 seconds
+Coagulation,Bleeding Time,minutes,2.0,7.0,2.0,7.0,2 - 7 minutes,2 - 7 minutes
+Blood Gas,pH (Arterial),pH,7.35,7.45,7.35,7.45,7.35 - 7.45 pH,7.35 - 7.45 pH
+Blood Gas,pCO2 (Arterial),mmHg,35.0,45.0,35.0,45.0,35 - 45 mmHg,35 - 45 mmHg
+Blood Gas,pO2 (Arterial),mmHg,75.0,100.0,75.0,100.0,75 - 100 mmHg,75 - 100 mmHg
+Blood Gas,HCO3 (Arterial Bicarb),mEq/L,22.0,26.0,22.0,26.0,22 - 26 mEq/L,22 - 26 mEq/L
+Blood Gas,O2 Saturation (Arterial),%,95.0,100.0,95.0,100.0,95 - 100 %,95 - 100 %
+Blood Gas,Base Excess,mEq/L,-2.0,2.0,-2.0,2.0,-2 to +2 mEq/L,-2 to +2 mEq/L
+Blood Gas,Carboxyhemoglobin,%,0.0,1.5,0.0,1.5,0 - 1.5 %,0 - 1.5 %
+Blood Gas,Methemoglobin,%,0.0,1.5,0.0,1.5,0 - 1.5 %,0 - 1.5 %
+Blood Gas,Ionized Calcium,mmol/L,1.15,1.33,1.15,1.33,1.15 - 1.33 mmol/L,1.15 - 1.33 mmol/L
+Tumor Marker,CA 125,U/mL,0.0,35.0,0.0,35.0,0 - 35 U/mL,0 - 35 U/mL
+Tumor Marker,CA 19-9,U/mL,0.0,37.0,0.0,37.0,0 - 37 U/mL,0 - 37 U/mL
+Tumor Marker,CA 15-3,U/mL,0.0,30.0,0.0,30.0,0 - 30 U/mL,0 - 30 U/mL
+Tumor Marker,Alpha-Fetoprotein (AFP),ng/mL,0.0,8.0,0.0,8.0,0 - 8 ng/mL,0 - 8 ng/mL
+Tumor Marker,HCG (Tumor/Non-preg),mIU/mL,0.0,5.0,0.0,5.0,0 - 5 mIU/mL,0 - 5 mIU/mL
+Tumor Marker,NSE (Neuron Specific Enolase),ng/mL,0.0,12.0,0.0,12.0,0 - 12 ng/mL,0 - 12 ng/mL
+Urine Spot,Urine Sodium,mEq/L,40.0,220.0,40.0,220.0,40 - 220 mEq/L,40 - 220 mEq/L
+Urine Spot,Urine Potassium,mEq/L,25.0,125.0,25.0,125.0,25 - 125 mEq/L,25 - 125 mEq/L
+Urine Spot,Urine Chloride,mEq/L,110.0,250.0,110.0,250.0,110 - 250 mEq/L,110 - 250 mEq/L
+Urine Spot,Urine Urea Nitrogen,g/24h,12.0,20.0,12.0,20.0,12 - 20 g/24h,12 - 20 g/24h
+Urine Spot,Microalbumin (Urine),mg/L,0.0,30.0,0.0,30.0,0 - 30 mg/L,0 - 30 mg/L
+Urine Spot,Urine Osmolality,mOsm/kg,500.0,800.0,500.0,800.0,500 - 800 mOsm/kg,500 - 800 mOsm/kg
+Metabolites,Metanephrines (Plasma),pg/mL,0.0,57.0,0.0,57.0,0 - 57 pg/mL,0 - 57 pg/mL
+Metabolites,Normetanephrines (Plasma),pg/mL,0.0,148.0,0.0,148.0,0 - 148 pg/mL,0 - 148 pg/mL
+Metabolites,VMA (Vanillylmandelic Acid),mg/24h,0.0,8.0,0.0,8.0,0 - 8 mg/24h,0 - 8 mg/24h
+Metabolites,5-HIAA (Urine),mg/24h,2.0,9.0,2.0,9.0,2 - 9 mg/24h,2 - 9 mg/24h
+Renal Calc,eGFR (CKD-EPI),mL/min/1.73m²,60.0,140.0,60.0,140.0,> 60 mL/min/1.73m²,> 60 mL/min/1.73m²
+Renal Calc,eGFR (MDRD),mL/min/1.73m²,60.0,140.0,60.0,140.0,> 60 mL/min/1.73m²,> 60 mL/min/1.73m²
+Renal Calc,Cystatin C eGFR,mL/min/1.73m²,60.0,130.0,60.0,130.0,> 60 mL/min/1.73m²,> 60 mL/min/1.73m²
+Renal Calc,Creatinine Clearance (24h),mL/min,97.0,137.0,88.0,128.0,97 - 137 mL/min,88 - 128 mL/min
+Renal Calc,Urine Albumin/Creatinine Ratio,mg/g,0.0,30.0,0.0,30.0,0 - 30 mg/g,0 - 30 mg/g
+Renal Calc,Urine Protein/Creatinine Ratio,mg/mg,0.0,0.2,0.0,0.2,0 - 0.2 mg/mg,0 - 0.2 mg/mg
+Renal Calc,BUN/Creatinine Ratio,ratio,10.0,20.0,10.0,20.0,10 - 20 ratio,10 - 20 ratio
+Renal Calc,Fractional Excretion of Na (FeNa),%,1.0,2.0,1.0,2.0,1 - 2 %,1 - 2 %
+Tumor Marker,CA 27.29 (Breast),U/mL,0.0,38.0,0.0,38.0,0 - 38 U/mL,0 - 38 U/mL
+Tumor Marker,CA 72-4 (Gastric),U/mL,0.0,6.9,0.0,6.9,0 - 6.9 U/mL,0 - 6.9 U/mL
+Tumor Marker,Cyfra 21-1 (Lung),ng/mL,0.0,3.3,0.0,3.3,0 - 3.3 ng/mL,0 - 3.3 ng/mL
+Tumor Marker,Chromogranin A,ng/mL,0.0,95.0,0.0,95.0,0 - 95 ng/mL,0 - 95 ng/mL
+Tumor Marker,Pro-Gastrin Releasing Peptide,pg/mL,0.0,65.0,0.0,65.0,0 - 65 pg/mL,0 - 65 pg/mL
+Tumor Marker,S-100 Protein,μg/L,0.0,0.1,0.0,0.1,0 - 0.10 μg/L,0 - 0.10 μg/L
+Tumor Marker,HE4 (Human Epididymis Protein),pmol/L,0.0,140.0,0.0,140.0,0 - 140 pmol/L,0 - 140 pmol/L
+Tumor Marker,CEA (Body Fluid),ng/mL,0.0,5.0,0.0,5.0,< 5 ng/mL,< 5 ng/mL
+Hematology,Neutrophils (Absolute),×10³/μL,1.8,7.8,1.8,7.8,1.8 - 7.8 ×10³/μL,1.8 - 7.8 ×10³/μL
+Hematology,Lymphocytes (Absolute),×10³/μL,1.0,4.8,1.0,4.8,1.0 - 4.8 ×10³/μL,1.0 - 4.8 ×10³/μL
+Hematology,Monocytes (Absolute),×10³/μL,0.2,0.95,0.2,0.95,0.2 - 0.95 ×10³/μL,0.2 - 0.95 ×10³/μL
+Hematology,Eosinophils (Absolute),×10³/μL,0.0,0.5,0.0,0.5,0 - 0.5 ×10³/μL,0 - 0.5 ×10³/μL
+Hematology,Basophils (Absolute),×10³/μL,0.0,0.2,0.0,0.2,0 - 0.2 ×10³/μL,0 - 0.2 ×10³/μL
+Hematology,Reticulocyte Count,%,0.5,2.5,0.5,2.5,0.5 - 2.5 %,0.5 - 2.5 %
+Hematology,Immature Granulocytes,%,0.0,1.0,0.0,1.0,0 - 1 %,0 - 1 %
+Hematology,RDW-CV,%,11.5,14.5,11.5,14.5,11.5 - 14.5 %,11.5 - 14.5 %
+Hematology,MPV (Mean Platelet Volume),fL,7.5,11.5,7.5,11.5,7.5 - 11.5 fL,7.5 - 11.5 fL
+Infectious,HBsAg (Hep B Surface Ag),Index,0.0,0.99,0.0,0.99,Non-Reactive (<1.0),Non-Reactive (<1.0)
+Infectious,HBsAb (Hep B Surface Ab),mIU/mL,10.0,1000.0,10.0,1000.0,Immune (>10),Immune (>10)
+Infectious,HCV Antibody,Index,0.0,0.9,0.0,0.9,Non-Reactive,Non-Reactive
+Infectious,HIV 1/2 Antibody/Ag,Index,0.0,0.9,0.0,0.9,Non-Reactive,Non-Reactive
+Infectious,RPR (Syphilis),Titer,0.0,0.0,0.0,0.0,Non-Reactive,Non-Reactive
+Infectious,Rubella IgG,IU/mL,10.0,500.0,10.0,500.0,Immune (>10),Immune (>10)
+Infectious,Varicella Zoster IgG,Index,1.1,10.0,1.1,10.0,Immune (>1.1),Immune (>1.1)
+Infectious,Helicobacter Pylori IgG,U/mL,0.0,0.9,0.0,0.9,Negative (<0.9),Negative (<0.9)
+Infectious,Lyme (Borrelia) IgG/IgM,Index,0.0,0.9,0.0,0.9,Negative (<0.9),Negative (<0.9)
+Infectious,EBV VCA IgG,Index,0.0,0.9,0.0,0.9,Negative (<0.9),Negative (<0.9)
+Infectious,CMV IgG,Index,0.0,0.9,0.0,0.9,Negative (<0.9),Negative (<0.9)
+Autoimmune,Anti-dsDNA,IU/mL,0.0,9.0,0.0,9.0,0 - 9 IU/mL,0 - 9 IU/mL
+Autoimmune,Anti-Smith (Sm),AI,0.0,1.0,0.0,1.0,Negative (<1.0),Negative (<1.0)
+Autoimmune,Anti-SSA (Ro),AI,0.0,1.0,0.0,1.0,Negative (<1.0),Negative (<1.0)
+Autoimmune,Anti-SSB (La),AI,0.0,1.0,0.0,1.0,Negative (<1.0),Negative (<1.0)
+Autoimmune,Anti-RNP,AI,0.0,1.0,0.0,1.0,Negative (<1.0),Negative (<1.0)
+Autoimmune,Anti-Cardiolipin IgG,GPL,0.0,14.0,0.0,14.0,0 - 14 GPL,0 - 14 GPL
+Autoimmune,Anti-Beta-2 Glycoprotein I,SGU,0.0,20.0,0.0,20.0,0 - 20 SGU,0 - 20 SGU
+Autoimmune,Lupus Anticoagulant,ratio,0.0,1.2,0.0,1.2,Negative (<1.2),Negative (<1.2)
+Autoimmune,ANCA Screen,Titer,0.0,0.0,0.0,0.0,Negative,Negative
+Autoimmune,Anti-Mitochondrial (AMA),Titer,0.0,20.0,0.0,20.0,< 1:20,< 1:20
+Autoimmune,Anti-Smooth Muscle (ASMA),Titer,0.0,20.0,0.0,20.0,< 1:20,< 1:20
+Diabetes,Insulin Antibodies,μU/mL,0.0,5.0,0.0,5.0,0 - 5 μU/mL,0 - 5 μU/mL
+Diabetes,GAD65 Antibody,IU/mL,0.0,5.0,0.0,5.0,0 - 5 IU/mL,0 - 5 IU/mL
+Diabetes,Ketones (Beta-Hydroxy),mmol/L,0.0,0.6,0.0,0.6,0 - 0.6 mmol/L,0 - 0.6 mmol/L
+Hormone,Pregnenolone,ng/dL,33.0,248.0,33.0,248.0,33 - 248 ng/dL,33 - 248 ng/dL
+Hormone,Dihydrotestosterone (DHT),ng/dL,30.0,85.0,4.0,22.0,30 - 85 ng/dL,4 - 22 ng/dL
+Hormone,Estrone (E1),pg/mL,10.0,60.0,10.0,200.0,10 - 60 pg/mL,10 - 200 pg/mL
+Hormone,Estriol (E3),ng/mL,0.0,0.2,0.0,0.2,< 0.2 ng/mL,< 0.2 (Non-preg)
+Hormone,Inhibin B,pg/mL,60.0,260.0,15.0,200.0,60 - 260 pg/mL,15 - 200 pg/mL
+Hormone,Anti-Mullerian Hormone,ng/mL,0.7,19.0,0.9,9.5,0.7 - 19 ng/mL,0.9 - 9.5 ng/mL
+Hormone,Serotonin (Serum),ng/mL,50.0,200.0,50.0,200.0,50 - 200 ng/mL,50 - 200 ng/mL
+Hormone,Glucagon,pg/mL,50.0,150.0,50.0,150.0,50 - 150 pg/mL,50 - 150 pg/mL
+Vitamins,Vitamin K1,nmol/L,0.2,3.2,0.2,3.2,0.2 - 3.2 nmol/L,0.2 - 3.2 nmol/L
+Vitamins,Vitamin B2 (Riboflavin),μg/L,137.0,370.0,137.0,370.0,137 - 370 μg/L,137 - 370 μg/L
+Vitamins,Vitamin B3 (Niacin),μg/mL,0.5,8.4,0.5,8.4,0.5 - 8.4 μg/mL,0.5 - 8.4 μg/mL
+Vitamins,Coenzyme Q10,mg/L,0.4,1.6,0.4,1.6,0.4 - 1.6 mg/L,0.4 - 1.6 mg/L
+Vitamins,Beta Carotene,μg/dL,6.0,47.0,6.0,47.0,6 - 47 μg/dL,6 - 47 μg/dL
+Metals,Aluminum (Serum),μg/L,0.0,10.0,0.0,10.0,0 - 10 μg/L,0 - 10 μg/L
+Metals,Arsenic (Urine 24h),μg/L,0.0,35.0,0.0,35.0,0 - 35 μg/L,0 - 35 μg/L
+Metals,Cadmium (Blood),μg/L,0.0,5.0,0.0,5.0,0 - 5 μg/L,0 - 5 μg/L
+Metals,Chromium (Serum),μg/L,0.1,2.1,0.1,2.1,0.1 - 2.1 μg/L,0.1 - 2.1 μg/L
+Metals,Manganese (Serum),ng/mL,0.4,0.85,0.4,0.85,0.4 - 0.85 ng/mL,0.4 - 0.85 ng/mL
+Metals,Cobalt (Serum),μg/L,0.0,1.0,0.0,1.0,0 - 1.0 μg/L,0 - 1.0 μg/L
+CSF,CSF Glucose,mg/dL,50.0,80.0,50.0,80.0,50 - 80 mg/dL,50 - 80 mg/dL
+CSF,CSF Protein,mg/dL,15.0,45.0,15.0,45.0,15 - 45 mg/dL,15 - 45 mg/dL
+CSF,CSF RBC,cells/μL,0.0,0.0,0.0,0.0,0 cells/μL,0 cells/μL
+CSF,CSF WBC,cells/μL,0.0,5.0,0.0,5.0,0 - 5 cells/μL,0 - 5 cells/μL
+Stool,Fecal Occult Blood,Qual,0.0,0.0,0.0,0.0,Negative,Negative
+Stool,Fecal Calprotectin,μg/g,0.0,50.0,0.0,50.0,0 - 50 μg/g,0 - 50 μg/g
+Stool,Fecal Elastase,μg/g,200.0,500.0,200.0,500.0,> 200 μg/g,> 200 μg/g
+Proteins,Cholinesterase (Serum),U/L,2900.0,7100.0,2900.0,7100.0,2900 - 7100 U/L,2900 - 7100 U/L
+Proteins,Tryptase,ng/mL,0.0,11.0,0.0,11.0,0 - 11 ng/mL,0 - 11 ng/mL
+Proteins,C1 Esterase Inhibitor,mg/dL,21.0,39.0,21.0,39.0,21 - 39 mg/dL,21 - 39 mg/dL
+Proteins,Hemopexin,mg/dL,50.0,115.0,50.0,115.0,50 - 115 mg/dL,50 - 115 mg/dL
+Urine 24h,Urine Calcium,mg/24h,100.0,300.0,100.0,250.0,100 - 300 mg/24h,100 - 250 mg/24h
+Urine 24h,Urine Uric Acid,mg/24h,250.0,750.0,250.0,750.0,250 - 750 mg/24h,250 - 750 mg/24h
+Urine 24h,Urine Citrate,mg/24h,320.0,1240.0,320.0,1240.0,320 - 1240 mg/24h,320 - 1240 mg/24h
+Urine 24h,Urine Oxalate,mg/24h,7.0,44.0,7.0,44.0,7 - 44 mg/24h,7 - 44 mg/24h
+Urine 24h,Urine Copper,μg/24h,15.0,60.0,15.0,60.0,15 - 60 μg/24h,15 - 60 μg/24h
+Urine 24h,Urine Cortisol (Free),μg/24h,4.0,50.0,4.0,50.0,4 - 50 μg/24h,4 - 50 μg/24h
+Urine 24h,Bence Jones Protein,Qual,0.0,0.0,0.0,0.0,Negative,Negative
+Allergy,Eosinophil Cationic Protein,μg/L,0.0,15.0,0.0,15.0,0 - 15 μg/L,0 - 15 μg/L
+Semen,Semen Volume,mL,1.5,5.0,0.0,0.0,> 1.5 mL,N/A
+Semen,Sperm Concentration,M/mL,15.0,200.0,0.0,0.0,> 15 M/mL,N/A
+Semen,Sperm Motility (Total),%,40.0,100.0,0.0,0.0,> 40 %,N/A
+Semen,Sperm Morphology,%,4.0,100.0,0.0,0.0,> 4 % (Strict),N/A
+Serum,Viscosity,ratio,1.4,1.8,1.4,1.8,1.4 - 1.8 ratio,1.4 - 1.8 ratio
+Serum,Cryoglobulins,Qual,0.0,0.0,0.0,0.0,Negative,Negative
+Serum,Cold Agglutinins,Titer,0.0,64.0,0.0,64.0,< 1:64,< 1:64

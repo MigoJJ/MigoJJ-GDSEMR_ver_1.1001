@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.emr.gds.features.medication.controller.MainController">
+
+    <left>
+        <VBox style="-fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef); -fx-padding: 15; -fx-spacing: 12; -fx-pref-width: 380; -fx-border-color: #dee2e6; -fx-border-width: 0 1 0 0;">
+            <Button text="← Back to Menu" onAction="#backToLauncher" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 10 15; -fx-background-radius: 6;"/>
+            <Separator style="-fx-background-color: #dee2e6;"/>
+            <Label text="Selected Medications:" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #495057;"/>
+            <TextArea fx:id="outputTextArea" promptText="Selected medications will appear here..." wrapText="true" VBox.vgrow="ALWAYS" 
+                     style="-fx-font-size: 13px; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 10;"/>
+            <Button text="📋 Copy All" onAction="#copyAll" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 10 15; -fx-background-radius: 6;"/>
+            <Button text="💾 Save to EMR" onAction="#saveToEmr" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 10 15; -fx-background-radius: 6;"/>
+            <Button text="🗑️ Clear" onAction="#clearOutput" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #ffc107; -fx-text-fill: #212529; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 10 15; -fx-background-radius: 6;"/>
+        </VBox>
+    </left>
+
+    <center>
+        <BorderPane>
+            <top>
+                <ToolBar style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f8f9fa); -fx-border-color: #dee2e6; -fx-border-width: 0 0 1 0; -fx-padding: 10 15;">
+                    <Button text="FIND" onAction="#findMedication" 
+                            style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+                    <Separator/>
+                    <Button text="INSERT" onAction="#addMedication" 
+                            style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+                    <Separator/>
+                    <Button text="DELETE" onAction="#deleteItem" 
+                            style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+                    <Separator/>
+                    <Button text="QUIT" onAction="#quitApp" 
+                            style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 8 16; -fx-background-radius: 6;"/>
+                </ToolBar>
+            </top>
+            <center>
+                <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" 
+                         style="-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            </center>
+        </BorderPane>
+    </center>
+
+    <right>
+        <VBox fx:id="actionPanel" style="-fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef); -fx-border-color: #dee2e6; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20; -fx-spacing: 15; -fx-pref-width: 380; -fx-border-width: 1 0 0 1;">
+            <Label text="📝 Edit / Delete / Save" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #495057;"/>
+            <Label fx:id="selectionLabel" text="No medication selected" wrapText="true" 
+                   style="-fx-text-fill: #6c757d; -fx-font-size: 13px; -fx-padding: 10; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            <Button fx:id="btnEdit" text="✏️ Edit" onAction="#editItem" disable="true" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #ffc107; -fx-text-fill: #212529; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 12 20; -fx-background-radius: 6;"/>
+            <Button fx:id="btnDelete" text="🗑️ Delete" onAction="#deleteItem" disable="true" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 12 20; -fx-background-radius: 6;"/>
+            <Button fx:id="btnSave" text="💾 Save Changes" onAction="#saveChanges" disable="true" maxWidth="1.7976931348623157E308" 
+                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 12 20; -fx-background-radius: 6;"/>
+        </VBox>
+    </right>
+</BorderPane>

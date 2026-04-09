@@ -48,7 +48,7 @@
 
 /* Highlighted Text Area (Tiny Yellow Gradient) */
 .text-area-highlighted {
-    -fx-control-inner-background: #FEFDE2;
+    -fx-control-inner-background: linear-gradient(to bottom, #FEFDE2, #FEF9D2);
     -fx-background-color: linear-gradient(to bottom, #FEFDE2, #FEF9D2);
     -fx-text-fill: black;
 }

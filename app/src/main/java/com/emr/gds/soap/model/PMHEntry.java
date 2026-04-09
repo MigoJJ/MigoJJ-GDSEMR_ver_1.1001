@@ -15,10 +15,6 @@ public class PMHEntry {
         this.type = type;
     }
 
-    // Default constructor for Jackson deserialization
-    public PMHEntry() {
-    }
-
     // Getters
     public String getCategory() {
         return category;
@@ -51,10 +47,6 @@ public class PMHEntry {
 
     public void setType(CategoryType type) {
         this.type = type;
-    }
-
-    public void setDefaultDotTarget(boolean isDefaultDotTarget) {
-        this.isDefaultDotTarget = isDefaultDotTarget;
     }
 
     // Methods expected by PMHService

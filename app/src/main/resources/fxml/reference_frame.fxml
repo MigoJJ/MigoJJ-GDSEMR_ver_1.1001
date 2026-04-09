@@ -9,8 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.layout.Region?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.emr.gds.features.ReferenceFile.ReferenceController">
     <padding>
@@ -19,11 +17,7 @@
     <top>
         <VBox spacing="10">
             <Label text="Reference Manager" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-            <HBox spacing="10">
-                <TextField fx:id="searchField" promptText="Search references..." onAction="#handleSearch" HBox.hgrow="ALWAYS"/>
-                <ComboBox fx:id="categoryFilter" promptText="All Categories"/>
-                <Button fx:id="clearSearchButton" text="Clear" onAction="#handleClearSearch"/>
-            </HBox>
+            <TextField fx:id="searchField" promptText="Search references..." onAction="#handleSearch"/>
         </VBox>
     </top>
     <center>
@@ -39,26 +33,13 @@
         </TableView>
     </center>
     <bottom>
-        <VBox spacing="6">
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Label fx:id="statusLabel" text=""/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Button fx:id="prevPageButton" text="Prev"/>
-                <Label fx:id="pageLabel" text="Page 1 / 1"/>
-                <Button fx:id="nextPageButton" text="Next"/>
-            </HBox>
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button fx:id="openBaseButton" text="Open Base" onAction="#handleOpenBaseFolder"/>
-                <Button fx:id="importButton" text="Import" onAction="#handleImport"/>
-                <Button fx:id="exportButton" text="Export" onAction="#handleExport"/>
-                <Button fx:id="backupDbButton" text="Backup DB" onAction="#handleBackupDb"/>
-                <Button text="Add" onAction="#handleAdd"/>
-                <Button fx:id="editButton" text="Edit" onAction="#handleEdit"/>
-                <Button fx:id="deleteButton" text="Delete" onAction="#handleDelete"/>
-                <Button text="Find" onAction="#handleFind"/>
-                <Button text="Save" onAction="#handleSave"/>
-                <Button text="Quit" onAction="#handleQuit"/>
-            </HBox>
-        </VBox>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Add" onAction="#handleAdd"/>
+            <Button text="Edit" onAction="#handleEdit"/>
+            <Button text="Delete" onAction="#handleDelete"/>
+            <Button text="Find" onAction="#handleFind"/>
+            <Button text="Save" onAction="#handleSave"/>
+            <Button text="Quit" onAction="#handleQuit"/>
+        </HBox>
     </bottom>
 </BorderPane>

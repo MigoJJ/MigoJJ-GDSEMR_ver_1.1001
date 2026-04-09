@@ -8,13 +8,12 @@
     primary-dark: #0f172a; /* Darker Navy */
     secondary-color: #a63d40; /* Vintage Rust */
     accent-color: #e9c46a; /* Mustard/Gold */
-    -fx-accent: secondary-color;
-    app-main-bg: linear-gradient(to bottom right, #fdfbf7, #f4efe3); /* Ecru/Cream gradient */
+    background-color: linear-gradient(to bottom right, #fdfbf7, #f4efe3); /* Ecru/Cream gradient */
     surface-color: #ffffff;
     text-color: #1d2d44; /* Navy Text */
     text-color-light: #f8fafc;
     border-color: #e2e8f0;
-    -fx-background-color: app-main-bg;
+    -fx-background-color: background-color;
 }
 
 /* Dark Theme Overrides */
@@ -22,8 +21,7 @@
     primary-color: #3b82f6;
     primary-dark: #1e40af;
     secondary-color: #ef4444;
-    -fx-accent: secondary-color;
-    app-main-bg: #0f172a;
+    background-color: #0f172a;
     surface-color: #1e293b;
     text-color: #fff7e6;
     text-color-light: #f8fafc;
@@ -34,8 +32,7 @@
     primary-color: #b45309; /* Warm amber */
     primary-dark: #92400e;
     secondary-color: #f97316; /* Orange accent */
-    -fx-accent: secondary-color;
-    app-main-bg: linear-gradient(to bottom right, #fff7ed, #fff0d1);
+    background-color: linear-gradient(to bottom right, #fff7ed, #fff0d1);
     surface-color: #fffaf3;
     text-color: #1d2d44;
     text-color-light: #0f172a;
@@ -97,7 +94,7 @@
 }
 
 .tool-bar {
-    -fx-background-color: app-main-bg; /* Ecru background */
+    -fx-background-color: background-color; /* Ecru background */
     -fx-border-color: border-color;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 8; /* Reduced from 12 */

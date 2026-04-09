@@ -33,4 +33,4 @@ graph TD;
 - Java toolchain and version properties are centralized in `gradle.properties`.
 - JavaFX version is configurable via `gradle.properties` (`javafxVersion`).
 - Kotlin DSL templates for Gradle 9.2 live in `templates/` (`build.gradle.kts.template`, `app.build.gradle.kts.template`, `build-logic.build.gradle.kts.template`) to help migrate without version drift between app and build-logic.
-- Spring Boot web skeleton lives in `server/` with health and template endpoints to extend.
+- Spring Boot web skeleton lives in `server/` with health and template endpoints to extend.# MigoJJ-GDSEMR_ver_1.1001

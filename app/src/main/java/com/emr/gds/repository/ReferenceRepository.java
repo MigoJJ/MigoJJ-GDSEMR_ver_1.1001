@@ -9,9 +9,5 @@ public interface ReferenceRepository {
     void delete(ReferenceItem item);
     List<ReferenceItem> findAll();
     Optional<ReferenceItem> findById(int id);
-    Optional<ReferenceItem> findByCategoryAndContents(String category, String contents);
-    boolean existsByCategoryAndContents(String category, String contents, int excludeId);
-    List<String> findDistinctCategories();
-    List<ReferenceItem> search(String query, String category);
     // Add other methods as needed, e.g., findByCategory, findByContents
 }

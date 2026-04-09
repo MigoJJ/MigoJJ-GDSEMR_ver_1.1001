@@ -11,7 +11,6 @@ src/main/resources/database/*.db
 caches/
 daemon/
 wrapper/dists/
-.github/workflows/
 
 # Build outputs
 **/build/
@@ -20,8 +19,6 @@ wrapper/dists/
 # Local logs and helpers
 *.log
 .aider*
-.codex/
-/main
 
 # IDE and OS artifacts
 .DS_Store

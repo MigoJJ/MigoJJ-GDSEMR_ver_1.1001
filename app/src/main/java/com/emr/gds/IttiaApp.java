@@ -165,11 +165,12 @@ public class IttiaApp extends Application {
         usernameField.setPromptText("Username");
         usernameField.setPrefWidth(360);
         usernameField.setStyle("-fx-background-radius: 12; -fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: white; -fx-prompt-text-fill: rgba(255,255,255,0.55);");
-
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.setPrefWidth(360);
         passwordField.setStyle("-fx-background-radius: 12; -fx-background-color: rgba(255,255,255,0.08); -fx-text-fill: white; -fx-prompt-text-fill: rgba(255,255,255,0.55);");
+
+        usernameField.setOnAction(e -> passwordField.requestFocus());
 
         Button loginButton = new Button("Sign In");
         loginButton.setDefaultButton(true);
@@ -657,55 +658,12 @@ public class IttiaApp extends Application {
     }
 
     /**
-     * Gathers content from the problem list and all text areas.
+     * Gathers content from the scratchpad.
      */
     private String compileAllContent() {
-        StringJoiner contentJoiner = new StringJoiner("\n\n");
-        addProblemListToContent(contentJoiner);
-        addTextAreasToContent(contentJoiner);
-        return contentJoiner.toString();
-    }
-
-    /**
-     * Appends the formatted problem list to the content joiner.
-     */
-    private void addProblemListToContent(StringJoiner contentJoiner) {
-        Optional.ofNullable(problemAction)
-                .map(IAMProblemAction::getProblems)
-                .filter(problems -> !problems.isEmpty())
-                .ifPresent(problems -> {
-                    StringBuilder problemBuilder = new StringBuilder("# Problem List (as of ")
-                            .append(LocalDate.now().format(DateTimeFormatter.ISO_DATE))
-                            .append(")\n");
-                    problems.forEach(problem -> problemBuilder.append("- ").append(problem).append("\n"));
-                    contentJoiner.add(problemBuilder.toString().trim());
-                });
-    }
-
-    /**
-     * Appends content from each text area to the content joiner.
-     */
-    private void addTextAreasToContent(StringJoiner contentJoiner) {
-        List<TextArea> textAreas = Optional.ofNullable(textAreaManager)
-                                           .map(IAMTextArea::getTextAreas)
-                                           .orElse(List.of());
-
-        for (int i = 0; i < textAreas.size(); i++) {
-            String uniqueText = IAMTextFormatUtil.getUniqueLines(textAreas.get(i).getText());
-            if (!uniqueText.isEmpty()) {
-                String title = getAreaTitle(i);
-                contentJoiner.add("# " + title + "\n" + uniqueText);
-            }
-        }
-    }
-
-    /**
-     * Retrieves the title for a given text area index.
-     */
-    private String getAreaTitle(int areaIndex) {
-        return (areaIndex < IAMTextArea.TEXT_AREA_TITLES.length)
-                ? IAMTextArea.TEXT_AREA_TITLES[areaIndex].replaceAll(">$", "")
-                : "Area " + (areaIndex + 1);
+        return Optional.ofNullable(problemAction)
+                       .map(IAMProblemAction::getScratchpadText)
+                       .orElse("");
     }
 
     // ================================

@@ -290,6 +290,10 @@ public class IAMProblemAction {
         }
     }
 
+    public String getScratchpadText() {
+        return (scratchpadArea != null) ? scratchpadArea.getText() : "";
+    }
+
     public void clearScratchpad() {
         if (scratchpadArea != null) {
             scratchpadArea.clear();

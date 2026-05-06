@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Cloud Healthcare API & Startup Program Support Plan</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; }
+        h1 { color: #1a73e8; border-bottom: 2px solid #1a73e8; padding-bottom: 10px; }
+        h2 { color: #1967d2; margin-top: 30px; }
+        h3 { color: #4285f4; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; }
+        .highlight { background-color: #e8f0fe; padding: 15px; border-left: 5px solid #1a73e8; margin: 20px 0; }
+        .footer { margin-top: 50px; font-size: 0.9em; color: #777; border-top: 1px solid #eee; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Google Cloud Support Plan for GDSEMR</h1>
+    <p><strong>날짜:</strong> 2026년 4월 24일</p>
+    <p><strong>대상 프로젝트:</strong> GDSEMR (지능형 차세대 EMR 시스템)</p>
+
+    <hr>
+
+    <h2>1. 구글 클라우드 헬스케어 API 핵심 기능</h2>
+    <h3>표준화 지원 (HL7 FHIR, DICOM, HL7 v2)</h3>
+    <ul>
+        <li><strong>HL7 FHIR:</strong> JSON/REST API 기반의 현대적 표준으로 데이터 호환성 확보.</li>
+        <li><strong>DICOM:</strong> 의료 영상 표준 지원 및 클라우드 기반 분석 인프라 제공.</li>
+        <li><strong>HL7 v2:</strong> 기존 병원 장비의 원시 데이터를 FHIR로 자동 변환.</li>
+    </ul>
+
+    <h3>데이터 비식별화 (De-identification)</h3>
+    <ul>
+        <li><strong>자동 마스킹:</strong> 이름, 주민번호 등 18가지 PHI 항목 자동 식별 및 삭제.</li>
+        <li><strong>텍스트 분석:</strong> 진료 메모(Free-text) 내의 개인정보까지 정밀 식별.</li>
+        <li><strong>연구 활용:</strong> 보안 규정을 준수하면서 AI 학습을 위한 고품질 데이터셋 구축 가능.</li>
+    </ul>
+
+    <h2>2. 구글 지원 프로그램 신청용 초안</h2>
+
+    <div class="highlight">
+        <h3>[초안 1] 아키텍처 설명 (Architecture Description)</h3>
+        <p>본 프로젝트는 로컬 데스크톱(JavaFX)의 효율성과 구글 클라우드의 지능형 API를 결합한 하이브리드 시스템입니다. FHIR Store를 통한 데이터 표준화, Vertex AI/Gemini를 통한 임상 의사결정 지원(CDSS), 그리고 클라우드 기반의 안전한 비식별화 파이프라인을 핵심 아키텍처로 구성합니다.</p>
+    </div>
+
+    <div class="highlight">
+        <h3>[초안 2] 클라우드 활용 계획 (Cloud Utilization Plan)</h3>
+        <p>1단계로 Healthcare API를 통한 데이터 표준화를 완료하고, 2단계에서 Gemini API를 연동하여 질환별 임상 가이드라인 기반의 AI 보조 기능을 구현합니다. 최종적으로 BigQuery와 Vertex AI를 연동하여 대규모 의료 데이터 분석 생태계를 구축할 계획입니다.</p>
+    </div>
+
+    <div class="highlight">
+        <h3>[초안 3] 비즈니스 모델 (Business Model)</h3>
+        <p>중소규모 병의원을 위한 SaaS 기반 구독 모델을 핵심으로 하며, AI 기반의 자동 차팅 및 진단 보조 기능을 프리미엄 서비스로 제공합니다. 또한, 표준화된 비식별 임상 데이터를 활용한 연구 지원 서비스로 비즈니스 영역을 확장합니다.</p>
+    </div>
+
+    <div class="highlight">
+        <h3>[초안 4] 기대 효과 (Expected Effects)</h3>
+        <p>의사의 업무 효율을 30% 이상 향상시키고, AI 분석을 통한 처방 오류 방지로 환자 안전을 극대화합니다. 구글의 글로벌 인프라를 활용하여 국내외 의료 시스템과의 데이터 호환성을 확보하고 글로벌 경쟁력을 갖춘 EMR로 성장할 것입니다.</p>
+    </div>
+
+    <h2>3. 비용 및 지원 프로그램 요약</h2>
+    <table>
+        <tr>
+            <th>항목</th>
+            <th>주요 혜택</th>
+        </tr>
+        <tr>
+            <td><strong>Google for Startups</strong></td>
+            <td>1년차 최대 $100,000 크레딧 제공 (기술 상담 포함)</td>
+        </tr>
+        <tr>
+            <td><strong>AI Startup Program</strong></td>
+            <td>최대 $350,000 크레딧 및 Gemini API 특별 지원</td>
+        </tr>
+        <tr>
+            <td><strong>신규 계정 혜택</strong></td>
+            <td>가입 즉시 $300 무료 크레딧 (PoC 단계 활용)</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p>본 문서는 Gemini CLI를 통해 작성되었습니다. Microsoft Word에서 이 파일을 열어 .docx로 저장하실 수 있습니다.</p>
+    </div>
+</body>
+</html>

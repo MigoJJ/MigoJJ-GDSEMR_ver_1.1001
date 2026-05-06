@@ -1,1 +1,2 @@
-This is a sample text file for Lab Values: Hemoglobin A1c.
+ gemini --resume 4e145f10-533e-4191-91c6-e38ae64cebce   
+ gemini --resume 4e145f10-533e-4191-91c6-e38ae64cebce    

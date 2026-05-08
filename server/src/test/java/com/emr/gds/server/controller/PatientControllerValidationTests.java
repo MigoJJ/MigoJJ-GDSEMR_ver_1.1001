@@ -1,7 +1,7 @@
 package com.emr.gds.server.controller;
 
 import com.emr.gds.server.api.ApiExceptionHandler;
-import com.emr.gds.server.repository.PatientRepository;
+import com.emr.gds.server.repository.JpaPatientRepository;
 import com.emr.gds.server.service.PatientService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class PatientControllerValidationTests {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private PatientRepository patientRepository;
+    private JpaPatientRepository patientRepository;
 
     @Test
     void createPatient_requiresNames() throws Exception {

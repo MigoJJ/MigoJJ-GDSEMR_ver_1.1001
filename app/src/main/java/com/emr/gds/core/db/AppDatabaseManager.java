@@ -1,8 +1,11 @@
 package com.emr.gds.core.db;
 
+import com.emr.gds.core.config.RuntimeEnvironment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,6 +17,7 @@ import java.sql.SQLException;
  */
 public class AppDatabaseManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(AppDatabaseManager.class);
     private static final AppDatabaseManager INSTANCE = new AppDatabaseManager();
 
     private Connection abbreviationConnection;
@@ -62,33 +66,28 @@ public class AppDatabaseManager {
         try {
             Class.forName("org.sqlite.JDBC");
         } catch (ClassNotFoundException e) {
+            logger.error("SQLite driver not found", e);
             throw new SQLException("SQLite driver not found", e);
         }
-        Path dbPath = resolveDbPath(dbFileName);
+        Path dbPath = RuntimeEnvironment.resolveDatabasePath(dbFileName);
         try {
-            Files.createDirectories(dbPath.getParent());
+            if (dbPath.getParent() != null) {
+                Files.createDirectories(dbPath.getParent());
+            }
         } catch (Exception e) {
+            logger.error("Failed to create database directory: {}", dbPath.getParent(), e);
             throw new SQLException("Failed to create database directory: " + dbPath.getParent(), e);
         }
         String url = "jdbc:sqlite:" + dbPath.toAbsolutePath();
+        logger.info("Opening database connection: {}", url);
         return DriverManager.getConnection(url);
-    }
-
-    private Path resolveDbPath(String dbFileName) {
-        Path p = Paths.get("").toAbsolutePath();
-        while (p != null && !Files.exists(p.resolve("gradlew")) && !Files.exists(p.resolve(".git"))) {
-            p = p.getParent();
-        }
-        if (p == null) {
-            p = Paths.get("").toAbsolutePath();
-        }
-        return p.resolve("app").resolve("db").resolve(dbFileName);
     }
 
     /**
      * Closes all managed connections. Intended to be called on application shutdown.
      */
     public synchronized void closeAll() {
+        logger.info("Closing all database connections.");
         closeQuietly(abbreviationConnection);
         abbreviationConnection = null;
         closeQuietly(historyConnection);
@@ -101,8 +100,8 @@ public class AppDatabaseManager {
         if (conn != null) {
             try {
                 conn.close();
-            } catch (SQLException ignored) {
-                // best-effort close
+            } catch (SQLException e) {
+                logger.warn("Error closing connection quietly", e);
             }
         }
     }

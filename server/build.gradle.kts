@@ -9,6 +9,9 @@ dependencies {
     implementation(platform(SpringBootPlugin.BOM_COORDINATES))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.h2database:h2")
+    implementation("org.flywaydb:flyway-core")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     // Explicit launcher needed for Gradle 9 test runner compatibility.

@@ -1,8 +1,7 @@
 package com.emr.gds.server.controller;
 
 import com.emr.gds.server.api.ApiExceptionHandler;
-import com.emr.gds.server.dto.PatientRequest;
-import com.emr.gds.server.repository.PatientRepository;
+import com.emr.gds.server.repository.JpaPatientRepository;
 import com.emr.gds.server.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ class PatientControllerDomainErrorTests {
     private org.springframework.test.web.servlet.MockMvc mockMvc;
 
     @MockBean
-    private PatientRepository patientRepository;
+    private JpaPatientRepository patientRepository;
 
     @Test
     void getPatient_notFoundHasContract() throws Exception {
@@ -74,7 +73,7 @@ class PatientControllerDomainErrorTests {
     @Test
     void deletePatient_notFoundHasContract() throws Exception {
         UUID missing = UUID.randomUUID();
-        when(patientRepository.deleteById(missing)).thenReturn(false);
+        when(patientRepository.existsById(missing)).thenReturn(false);
 
         mockMvc.perform(delete("/api/v1/patients/{id}", missing))
                 .andExpect(status().isNotFound())

@@ -25,6 +25,8 @@ import com.emr.gds.shared.ui.IAMProblemAction;
 import com.emr.gds.shared.ui.IAMTextArea;
 import com.emr.gds.shared.ui.IAMTextFormatUtil;
 import com.emr.gds.shared.ui.TextAreaControlProcessor;
+import com.emr.gds.context.AppContext;
+import com.emr.gds.core.config.RuntimeEnvironment;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -69,17 +71,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.StringJoiner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main JavaFX Application for GDSEMR ITTIA - EMR Prototype.
- * This class serves as the entry point for the application and is responsible for:
- * - Initializing the main application window.
- * - Setting up the user interface, including toolbars, text areas, and panels.
- * - Managing database connections and loading initial data.
- * - Handling user interactions, such as button clicks and keyboard shortcuts.
- * - Coordinating communication between different UI components and managers.
  */
 public class IttiaApp extends Application {
+
+    private static final Logger logger = LoggerFactory.getLogger(IttiaApp.class);
 
     // ================================
     // Constants
@@ -95,13 +95,6 @@ public class IttiaApp extends Application {
     private IAMProblemAction problemAction;
     private IAMButtonAction buttonAction;
     private IAMTextArea textAreaManager;
-    private final Map<String, String> abbrevMap = new HashMap<>();
-    private final AbbreviationService abbreviationService =
-            new AbbreviationService(new SqliteAbbreviationRepository(), abbrevMap);
-    private final ProblemListService problemListService =
-            new ProblemListService(new SqliteProblemRepository());
-    private final PlanHistoryService planHistoryService =
-            new PlanHistoryService(new SqlitePlanHistoryRepository());
     private IAIFreqFrame freqStage; // Manages the vital signs window
     private IAMFunctionkey functionKeyHandler;
     private Stage mainStage;
@@ -127,12 +120,13 @@ public class IttiaApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        com.emr.gds.context.DataInitializer.initialize();
         this.startTime = System.currentTimeMillis();
         this.mainStage = primaryStage;
         primaryStage.setTitle(APP_TITLE);
 
         showLoginScene(primaryStage);
-        System.out.println("Time to first window: " + (System.currentTimeMillis() - startTime) + "ms");
+        logger.info("Time to first window: {}ms", (System.currentTimeMillis() - startTime));
     }
 
     private void showLoginScene(Stage stage) {
@@ -214,7 +208,7 @@ public class IttiaApp extends Application {
         javafx.concurrent.Task<Map<String, String>> loadTask = new javafx.concurrent.Task<>() {
             @Override
             protected Map<String, String> call() throws Exception {
-                return abbreviationService.loadAll();
+                return AppContext.getInstance().getAbbreviationService().loadAll();
             }
         };
 
@@ -253,8 +247,9 @@ public class IttiaApp extends Application {
             // Perform setup tasks after the stage is visible
             configurePostShow(scene);
             
-            System.out.println("Time to main scene: " + (System.currentTimeMillis() - startTime) + "ms");
+            logger.info("Time to main scene: {}ms", (System.currentTimeMillis() - startTime));
         } catch (Exception e) {
+            logger.error("Failed to launch main scene", e);
             showFatalError("Application Startup Error", "Failed to start the application.", e);
         }
     }
@@ -274,7 +269,7 @@ public class IttiaApp extends Application {
             problemAction.closeResources();
         }
         AppDatabaseManager.getInstance().closeAll();
-        System.out.println("All database connections closed.");
+        logger.info("All database connections closed.");
     }
 
     // ================================
@@ -285,15 +280,11 @@ public class IttiaApp extends Application {
      * Initializes database connection and core application managers.
      */
     private void initializeApplicationComponents(Map<String, String> loadedAbbreviations) throws IOException, ClassNotFoundException, SQLException {
-        // Load Data
-        if (loadedAbbreviations != null && loadedAbbreviations != abbrevMap) {
-            abbrevMap.clear();
-            abbrevMap.putAll(loadedAbbreviations);
-        }
+        AppContext context = AppContext.getInstance();
         
-        problemAction = new IAMProblemAction(this, problemListService);
-        textAreaManager = new IAMTextArea(abbrevMap, problemAction, abbreviationService, planHistoryService);
-        buttonAction = new IAMButtonAction(this, abbreviationService);
+        problemAction = new IAMProblemAction(this, context.getProblemListService());
+        textAreaManager = new IAMTextArea(context.getAbbrevMap(), problemAction, context.getAbbreviationService(), context.getPlanHistoryService());
+        buttonAction = new IAMButtonAction(this, context.getAbbreviationService());
         textAreaManager.setAssessmentDoubleClickHandler((textArea, index) -> buttonAction.openKcd9Manager());
         functionKeyHandler = new IAMFunctionkey(this);
     }
@@ -506,13 +497,11 @@ public class IttiaApp extends Application {
             
             // Get the controller and inject the base path and service
             com.emr.gds.features.ReferenceFile.ReferenceController controller = loader.getController();
-            File referenceBasePath = getRepoRoot().resolve("app").resolve("db").resolve("references").toFile();
+            File referenceBasePath = RuntimeEnvironment.getDatabaseDirectory().resolve("references").toFile();
             controller.setBasePath(referenceBasePath);
             
-            // Instantiate and inject ReferenceService
-            SqliteReferenceRepository referenceRepository = new SqliteReferenceRepository(AppDatabaseManager.getInstance());
-            ReferenceService referenceService = new ReferenceService(referenceRepository);
-            controller.setReferenceService(referenceService);
+            // Inject ReferenceService from AppContext
+            controller.setReferenceService(AppContext.getInstance().getReferenceService());
             
             controller.initData();
 
@@ -531,7 +520,7 @@ public class IttiaApp extends Application {
      * Configures the application after the main stage is shown.
      */
     private void configurePostShow(Scene scene) {
-        TextAreaControlProcessor.installGlobalProcessor(abbrevMap);
+        TextAreaControlProcessor.installGlobalProcessor(AppContext.getInstance().getAbbrevMap());
 
         Platform.runLater(() -> {
             // Ensure the bridge is ready and set initial focus
@@ -736,7 +725,7 @@ public class IttiaApp extends Application {
     }
 
     public Map<String, String> getAbbrevMap() {
-        return abbrevMap;
+        return AppContext.getInstance().getAbbrevMap();
     }
 
     public IAMFunctionkey getFunctionKeyHandler() {

@@ -9,9 +9,10 @@ val slf4jVersion: String by project
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":ai"))
 
     implementation("org.xerial:sqlite-jdbc:$sqliteVersion")
-    runtimeOnly("org.slf4j:slf4j-simple:$slf4jVersion")
+    runtimeOnly("ch.qos.logback:logback-classic:1.5.16")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1") // Added for JSON parsing
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")

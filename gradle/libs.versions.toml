@@ -12,6 +12,7 @@ springBoot = "3.3.13"
 commons-text = { module = "org.apache.commons:commons-text", version = "1.13.0" }
 sqlite-jdbc = { module = "org.xerial:sqlite-jdbc", version.ref = "sqlite" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.16" }
 
 [plugins]
 javafx = { id = "org.openjfx.javafxplugin", version.ref = "javafxPlugin" }

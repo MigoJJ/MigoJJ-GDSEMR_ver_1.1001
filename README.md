@@ -38,3 +38,32 @@ graph TD;
 - SLF4J/Logback integrated for professional logging (logs stored in `~/.gdsemr/logs`).
 - Kotlin DSL templates for Gradle 9.2 live in `templates/` (`build.gradle.kts.template`, `app.build.gradle.kts.template`, `build-logic.build.gradle.kts.template`) to help migrate without version drift between app and build-logic.
 - Spring Boot web skeleton lives in `server/` with health and template endpoints to extend.
+
+---
+
+## APIGDSEMR Integration
+
+### Setup
+
+Set the API key for the provider you want to use before launching:
+
+```bash
+export GEMINI_API_KEY="your-key-here"
+export OPENAI_API_KEY="your-key-here"
+```
+
+### Health check
+
+Check all configured providers:
+
+```bash
+./gradlew healthCheck --no-daemon
+```
+
+### Available LLM models
+
+List all configured providers' currently available LLM models:
+
+```bash
+./gradlew listModels --no-daemon
+```

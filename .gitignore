@@ -12,7 +12,6 @@ src/main/resources/database/*.db
 caches/
 daemon/
 wrapper/dists/
-.github/workflows/
 
 # Build outputs
 **/build/
@@ -40,3 +39,7 @@ Thumbs.db
 
 # Local runtime data
 prompts.db
+
+# Environment variables
+.env
+.env.*

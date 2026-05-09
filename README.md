@@ -36,3 +36,32 @@ graph TD;
 ## Notes
 - Java toolchain and version properties are centralized in `gradle/libs.versions.toml`.
 - SLF4J/Logback integrated for professional logging (logs stored in `~/.gdsemr/logs`).
+
+---
+
+## APIGDSEMR Integration
+
+### Setup
+
+Set the API key for the provider you want to use before launching:
+
+```bash
+export GEMINI_API_KEY="your-key-here"
+export OPENAI_API_KEY="your-key-here"
+```
+
+### Health check
+
+Check all configured providers:
+
+```bash
+./gradlew healthCheck --no-daemon
+```
+
+### Available LLM models
+
+List all configured providers' currently available LLM models:
+
+```bash
+./gradlew listModels --no-daemon
+```

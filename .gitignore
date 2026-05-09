@@ -7,6 +7,7 @@ src/main/resources/database/*.db
 
 # Gradle metadata
 **/.gradle/
+.gradle-home/
 .gradle-tmp/
 caches/
 daemon/
@@ -16,6 +17,10 @@ wrapper/dists/
 # Build outputs
 **/build/
 **/bin/
+out/
+*.class
+hs_err_pid*
+replay_pid*
 
 # Local logs and helpers
 *.log
@@ -25,9 +30,13 @@ wrapper/dists/
 
 # IDE and OS artifacts
 .DS_Store
+Thumbs.db
 .idea/
 .vscode/
 *.iml
 .classpath
 .project
 .settings/
+
+# Local runtime data
+prompts.db

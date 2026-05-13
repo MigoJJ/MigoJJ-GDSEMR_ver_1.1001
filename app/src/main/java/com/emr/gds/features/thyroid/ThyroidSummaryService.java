@@ -1,22 +1,21 @@
 package com.emr.gds.features.thyroid;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class ThyroidSummaryService {
 
-    private static final String TSH_REF = "0.25-5 mIU/L";
-    private static final String FT4_REF = "10.6-19.4 ng/L";
-    private static final String FT3_REF = "2.00-4.40 pg/mL";
-    private static final String T3_REF = "0.9-2.5 ng/ml";
+    private static final String TSH_REF = "0.4-4.0 uIU/mL";
+    private static final String FT4_REF = "0.8-1.8 ng/dL";
+    private static final String FT3_REF = "2.3-4.2 pg/mL";
+    private static final String T3_REF = "80-200 ng/dL";
     private static final String TPOAB_REF = "≤34.0 IU/mL";
     private static final String TG_REF = "3.50-77.00 ng/mL";
     private static final String TGAB_REF = "≤115.0 IU/mL";
     private static final String TRAB_REF = "<1.75 IU/L";
     private static final String CALCITONIN_REF = "M:≤18.2, F:≤11.5 pg/mL";
-    private static final String REVT3_REF = "90-350 pg/mL";
+    private static final String REVT3_REF = "8-25 ng/dL";
 
     public String buildSpecialistSummary(ThyroidEntry e, Map<String, List<String>> selectedConditions, String tiRadsResult) {
         List<String> lines = new ArrayList<>();
@@ -37,18 +36,18 @@ public class ThyroidSummaryService {
             }
         }
 
-        if (e.getGoiterSize() != null && !e.getGoiterSize().isBlank()) {
+        boolean hasPhysicalExamNote = e.getPhysicalExamNote() != null && !e.getPhysicalExamNote().isBlank();
+        if (!hasPhysicalExamNote && e.getGoiterSize() != null && !e.getGoiterSize().isBlank()) {
             String goiterSize = e.getGoiterSize();
-            if (!goiterSize.toLowerCase().contains("cc")) {
-                if (!goiterSize.toLowerCase().contains("cm")) {
-                    try {
-                        Double.parseDouble(goiterSize);
-                        goiterSize += " CC";
-                    } catch (NumberFormatException ignored) {}
-                }
-                lines.add("     | Physical Exam: Goiter size " + goiterSize);
+            if (!goiterSize.toLowerCase().contains("cc") && !goiterSize.toLowerCase().contains("cm")) {
+                try {
+                    Double.parseDouble(goiterSize);
+                    goiterSize += " cc";
+                } catch (NumberFormatException ignored) {}
             }
+            lines.add("     | Physical Exam: Goiter size " + goiterSize);
         }
+        addPhysicalExamBlock(lines, e.getPhysicalExamNote());
         
         String negatives = (e.getSymptomNegatives() != null) ? e.getSymptomNegatives().trim() : "";
         if (!e.getSymptoms().isEmpty() || !negatives.isBlank()) {
@@ -92,12 +91,15 @@ public class ThyroidSummaryService {
 
         if (e.getCategories().contains(ThyroidEntry.MainCategory.CANCER)) {
             StringBuilder caLine = new StringBuilder("Thyroid Cancer ");
+            if (e.getCancerHistology() != null) caLine.append(e.getCancerHistology()).append(". ");
+            if (e.getTnmStage() != null && !e.getTnmStage().isBlank()) caLine.append("TNM: ").append(e.getTnmStage()).append(". ");
             if (e.getAtaRisk() != null && !e.getAtaRisk().equals("Low Risk")) {
                 caLine.append(e.getAtaRisk()).append(" (path features). ");
             } else {
                 caLine.append("Low Risk Stratification. ");
             }
             if (e.getTg() != null) caLine.append("Tg: ").append(e.getTg()).append(" ng/mL. ");
+            if (e.getCancerStatus() != null && !e.getCancerStatus().isBlank()) caLine.append(e.getCancerStatus()).append(". ");
             statusParts.add(caLine.toString().trim());
         }
         if (!statusParts.isEmpty()) {
@@ -127,7 +129,24 @@ public class ThyroidSummaryService {
 
         if (tiRadsResult != null && tiRadsResult.contains("Score")) {
             lines.add("     | Nodule/TI-RADS: " + tiRadsResult.replace("\n", ", "));
+        } else if (e.getTiRadsLevel() != null && e.getTiRadsScore() != null) {
+            lines.add("     | Nodule/TI-RADS: " + e.getTiRadsLevel() + ", Score: " + e.getTiRadsScore());
         }
+
+        addTextLine(lines, "Ultrasound" + formatDate(e.getUsDate()), e.getUsSummary());
+        addTextLine(lines, "Scan" + formatDate(e.getScanDate()), e.getScanSummary());
+
+        String treatment = buildTreatmentLine(e);
+        if (!treatment.isBlank()) {
+            lines.add("     | Treatment: " + treatment);
+        }
+
+        String rai = buildRaiLine(e);
+        if (!rai.isBlank()) {
+            lines.add("     | RAI: " + rai);
+        }
+
+        addTextLine(lines, "Clinician Note", e.getClinicianNote());
 
         StringBuilder plan = new StringBuilder("Plan: ");
         if (e.getFollowUpInterval() != null) {
@@ -145,6 +164,96 @@ public class ThyroidSummaryService {
         if (value == null) return;
         String indicator = getLabIndicator(value, ref);
         lines.add(String.format("          %-15s\t%-10.2f\t%-2s\t(%s)", name, value, indicator, ref));
+    }
+
+    private void addTextLine(List<String> lines, String label, String value) {
+        if (value == null || value.isBlank()) return;
+        lines.add("     | " + label + ": " + value.replaceAll("\\R+", "; ").trim());
+    }
+
+    private void addMultilineTextBlock(List<String> lines, String label, String value) {
+        if (value == null || value.isBlank()) return;
+        lines.add("     | " + label + ":");
+        for (String rawLine : value.strip().split("\\R+")) {
+            String line = rawLine.strip();
+            if (line.isEmpty()) continue;
+            if (line.endsWith(":")) {
+                lines.add("     |\t" + line);
+            } else if (line.startsWith("-")) {
+                lines.add("     |\t\t" + line);
+            } else {
+                lines.add("     |\t" + line);
+            }
+        }
+    }
+
+    private void addPhysicalExamBlock(List<String> lines, String value) {
+        if (value == null || value.isBlank()) return;
+        for (String rawLine : value.strip().split("\\R+")) {
+            String line = rawLine.strip();
+            if (line.isEmpty()) continue;
+            if (line.endsWith(":")) {
+                lines.add("     |\t" + line);
+            } else if (line.startsWith("-")) {
+                lines.add("     |\t\t" + line);
+            } else {
+                lines.add("     |\t" + line);
+            }
+        }
+    }
+
+    private String buildTreatmentLine(ThyroidEntry e) {
+        List<String> parts = new ArrayList<>();
+        if (e.getLt4DoseMcgPerDay() != null) {
+            parts.add("LT4 " + formatNumber(e.getLt4DoseMcgPerDay()) + " mcg/day");
+        }
+        if ((e.getAtdName() != null && !e.getAtdName().isBlank()) || e.getAtdDoseMgPerDay() != null) {
+            String atd = (e.getAtdName() != null && !e.getAtdName().isBlank()) ? e.getAtdName().trim() : "ATD";
+            if (e.getAtdDoseMgPerDay() != null) {
+                atd += " " + formatNumber(e.getAtdDoseMgPerDay()) + " mg/day";
+            }
+            parts.add(atd);
+        }
+        if ((e.getBetaBlockerName() != null && !e.getBetaBlockerName().isBlank())
+                || (e.getBetaBlockerDose() != null && !e.getBetaBlockerDose().isBlank())) {
+            String betaBlocker = (e.getBetaBlockerName() != null && !e.getBetaBlockerName().isBlank())
+                    ? e.getBetaBlockerName().trim()
+                    : "Beta blocker";
+            if (e.getBetaBlockerDose() != null && !e.getBetaBlockerDose().isBlank()) {
+                betaBlocker += " " + e.getBetaBlockerDose().trim();
+            }
+            parts.add(betaBlocker);
+        }
+        if (e.getOtherMeds() != null && !e.getOtherMeds().isBlank()) {
+            parts.add(e.getOtherMeds().replaceAll("\\R+", "; ").trim());
+        }
+        return String.join("; ", parts);
+    }
+
+    private String buildRaiLine(ThyroidEntry e) {
+        List<String> parts = new ArrayList<>();
+        if (e.getRaiDone() != null) {
+            parts.add(Boolean.TRUE.equals(e.getRaiDone()) ? "done" : "not done");
+        }
+        if (e.getRaiDoseMci() != null) {
+            parts.add(formatNumber(e.getRaiDoseMci()) + " mCi");
+        }
+        if (e.getRaiDate() != null) {
+            parts.add(e.getRaiDate().toString());
+        }
+        return String.join("; ", parts);
+    }
+
+    private String formatDate(java.time.LocalDate date) {
+        return date == null ? "" : " (" + date + ")";
+    }
+
+    private String formatNumber(Double value) {
+        if (value == null) return "";
+        if (value % 1 == 0) {
+            return String.valueOf(value.intValue());
+        }
+        return String.valueOf(value);
     }
 
     private String getLabIndicator(Double value, String ref) {

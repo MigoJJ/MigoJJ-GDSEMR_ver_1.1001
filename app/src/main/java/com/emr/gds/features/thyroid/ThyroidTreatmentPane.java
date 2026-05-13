@@ -58,14 +58,26 @@ public class ThyroidTreatmentPane extends VBox {
     }
 
     public void saveToEntry() {
-        try { entry.setLt4DoseMcgPerDay(Double.parseDouble(txtLt4Dose.getText())); } catch (NumberFormatException ignored) {}
+        entry.setLt4DoseMcgPerDay(parseNullableDouble(txtLt4Dose));
         entry.setAtdName(txtAtdName.getText());
-        try { entry.setAtdDoseMgPerDay(Double.parseDouble(txtAtdDose.getText())); } catch (NumberFormatException ignored) {}
+        entry.setAtdDoseMgPerDay(parseNullableDouble(txtAtdDose));
         entry.setBetaBlockerName(txtBetaBlockerName.getText());
         entry.setBetaBlockerDose(txtBetaBlockerDose.getText());
     }
 
     public Button getBtnOpenEmrHelper() {
         return btnOpenEmrHelper;
+    }
+
+    private Double parseNullableDouble(TextField field) {
+        String value = field.getText();
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        try {
+            return Double.parseDouble(value.trim());
+        } catch (NumberFormatException ignored) {
+            return null;
+        }
     }
 }

@@ -1,11 +1,10 @@
 package com.emr.gds.features.template;
 
+import com.emr.gds.core.db.AppDatabaseManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,26 +32,9 @@ public class TemplateRepository {
 
     private void initConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
-        Path dbPath = getDbPath();
-        try {
-            if (!Files.exists(dbPath.getParent())) {
-                Files.createDirectories(dbPath.getParent());
-            }
-        } catch (Exception e) {
-            logger.warn("DB 디렉토리 생성 실패: {}", dbPath.getParent(), e);
-        }
-
+        Path dbPath = AppDatabaseManager.resolveAppDbPath(DB_FILENAME);
         String url = "jdbc:sqlite:" + dbPath.toAbsolutePath();
         this.conn = DriverManager.getConnection(url);
-    }
-
-    private Path getDbPath() {
-        Path p = Paths.get("").toAbsolutePath();
-        while (p != null && !Files.exists(p.resolve("gradlew")) && !Files.exists(p.resolve(".git"))) {
-            p = p.getParent();
-        }
-        if (p == null) p = Paths.get("").toAbsolutePath();
-        return p.resolve("app").resolve("db").resolve(DB_FILENAME);
     }
 
     private void createTableIfNotExists() {

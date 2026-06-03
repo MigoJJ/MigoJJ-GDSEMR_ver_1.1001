@@ -1,5 +1,6 @@
 package com.emr.gds.features.kcd.db;
 
+import com.emr.gds.core.db.AppDatabaseManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
@@ -13,16 +14,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * A utility class to import data from a CSV file into a SQLite database.
- * This class is designed to be run as a standalone application.
+ * One-time utility to import KCD CSV data into the SQLite database.
+ * Run as a standalone application from the project root.
  */
 public class CsvToSqliteImporter {
 
     private static final Logger logger = LoggerFactory.getLogger(CsvToSqliteImporter.class);
 
-    private static final String CSV_FILE_PATH = "/home/migowj/git/GDSEMR_ver_0.2/app/src/main/resources/database/KCD-9master_4digit.csv";
-    private static final String DB_NAME = "/home/migowj/git/GDSEMR_ver_0.2/app/src/main/resources/database/kcd_database.db";
-    private static final String JDBC_URL = "jdbc:sqlite:" + DB_NAME;
+    // resolveAppDbPath 는 app/src/main/resources/database/ 도 탐색하므로 CSV에도 사용 가능
+    private static final String CSV_FILE_PATH =
+        AppDatabaseManager.resolveAppDbPath("KCD-9master_4digit.csv").toAbsolutePath().toString();
+    private static final String JDBC_URL =
+        "jdbc:sqlite:" + AppDatabaseManager.resolveAppDbPath("kcd_database.db").toAbsolutePath();
 
     public static void main(String[] args) {
         if (!validateCsvFile()) {

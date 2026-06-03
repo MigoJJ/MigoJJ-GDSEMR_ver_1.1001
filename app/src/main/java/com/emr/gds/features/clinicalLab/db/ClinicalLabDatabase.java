@@ -1,5 +1,6 @@
 package com.emr.gds.features.clinicalLab.db;
 
+import com.emr.gds.core.db.AppDatabaseManager;
 import com.emr.gds.features.clinicalLab.model.ClinicalLabItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,27 +8,14 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
 
 public class ClinicalLabDatabase {
 
     private static final Logger logger = LoggerFactory.getLogger(ClinicalLabDatabase.class);
+    private static final String DB_FILE = "ClinicalLabItemsSqlite3.db";
 
     private String getDbUrl() {
-        String[] possiblePaths = {
-            "app/db/ClinicalLabItemsSqlite3.db",
-            "db/ClinicalLabItemsSqlite3.db",
-            "../app/db/ClinicalLabItemsSqlite3.db"
-        };
-
-        for (String path : possiblePaths) {
-            File file = new File(path);
-            if (file.exists()) {
-                return "jdbc:sqlite:" + file.getAbsolutePath();
-            }
-        }
-        logger.warn("ClinicalLabDatabase: DB 파일을 찾을 수 없음 - app/db/ 기본 경로 사용");
-        return "jdbc:sqlite:app/db/ClinicalLabItemsSqlite3.db";
+        return "jdbc:sqlite:" + AppDatabaseManager.resolveAppDbPath(DB_FILE).toAbsolutePath();
     }
 
     public List<ClinicalLabItem> getAllItems() {

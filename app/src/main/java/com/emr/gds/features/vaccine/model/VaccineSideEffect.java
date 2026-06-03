@@ -1,6 +1,8 @@
-package com.emr.gds.features.vaccine;
+package com.emr.gds.features.vaccine.model;
 
+import com.emr.gds.features.vaccine.view.VaccineSelector;
 import com.emr.gds.input.IAIMain;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -25,20 +27,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * A utility class for creating a modal dialog to record vaccine side effects.
- * This class is final and cannot be instantiated.
- */
 public final class VaccineSideEffect {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static Stage stage; // Singleton instance of the window
+    private static Stage stage;
 
     private VaccineSideEffect() {}
 
-    /**
-     * Opens the side effect entry window. If an instance already exists, it brings it to the front.
-     */
     public static void open() {
         if (stage != null) {
             stage.toFront();
@@ -49,7 +44,6 @@ public final class VaccineSideEffect {
         stage = new Stage();
         stage.setTitle("Vaccine – Side Effects");
 
-        // --- UI Components ---
         DatePicker datePicker = new DatePicker(LocalDate.now());
         TextField vaccineField = new TextField();
         vaccineField.setPromptText("Vaccine name (e.g., Shingrix #2/2)");
@@ -71,7 +65,6 @@ public final class VaccineSideEffect {
         Button closeButton = new Button("Close");
         closeButton.setCancelButton(true);
 
-        // --- Layout ---
         GridPane formGrid = createFormGrid(datePicker, vaccineField, severityComboBox);
         VBox effectsBox = createEffectsBox(sideEffectCheckBoxes);
         VaccineSelector vaccineSelector = new VaccineSelector().bindAppend(vaccineField);
@@ -86,7 +79,6 @@ public final class VaccineSideEffect {
         );
         root.setPadding(new Insets(12));
 
-        // --- Event Handlers ---
         insertButton.setOnAction(e -> {
             String report = buildReport(datePicker.getValue(), vaccineField.getText(), severityComboBox.getValue(), sideEffectCheckBoxes, notesArea.getText());
             insertReportIntoEMR(report);
@@ -148,7 +140,7 @@ public final class VaccineSideEffect {
 
     private static void insertReportIntoEMR(String report) {
         try {
-            IAIMain.getTextAreaManager().focusArea(4); // Target 'S>' area
+            IAIMain.getTextAreaManager().focusArea(4);
             IAIMain.getTextAreaManager().insertBlockIntoFocusedArea(report);
             if (stage != null) {
                 stage.close();
@@ -168,9 +160,7 @@ public final class VaccineSideEffect {
     private static void showAlert(String message) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-            if (stage != null) {
-                alert.initOwner(stage);
-            }
+            if (stage != null) alert.initOwner(stage);
             alert.setHeaderText(null);
             alert.setTitle("Info");
             alert.showAndWait();

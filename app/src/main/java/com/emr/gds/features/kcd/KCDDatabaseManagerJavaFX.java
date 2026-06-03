@@ -1,5 +1,6 @@
 package com.emr.gds.features.kcd;
 
+import com.emr.gds.core.db.AppDatabaseManager;
 import com.emr.gds.input.IAIMain;
 import com.emr.gds.features.kcd.db.DatabaseManager;
 import org.slf4j.Logger;
@@ -44,8 +45,8 @@ public class KCDDatabaseManagerJavaFX {
     private Stage stage;
     public Stage getStage() { return stage; }
 
-    private static final String DB_PATH = "src/main/resources/database/kcd_database.db";
-    public static final String JDBC_URL = "jdbc:sqlite:" + DB_PATH;
+    public static final String JDBC_URL =
+        "jdbc:sqlite:" + AppDatabaseManager.resolveAppDbPath("kcd_database.db").toAbsolutePath();
     private static final DateTimeFormatter ISO_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private TableView<KCDRecord> table;

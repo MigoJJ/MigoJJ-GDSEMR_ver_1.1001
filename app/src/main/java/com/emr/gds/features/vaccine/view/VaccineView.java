@@ -1,6 +1,6 @@
-package com.emr.gds.features.vaccine;
+package com.emr.gds.features.vaccine.view;
 
-import com.emr.gds.features.vaccine.VaccineConstants;
+import com.emr.gds.features.vaccine.model.VaccineConstants;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,9 +17,6 @@ import javafx.stage.StageStyle;
 
 import java.util.function.Consumer;
 
-/**
- * View-only class that builds the Vaccine palette UI.
- */
 public class VaccineView {
 
     private static final double FRAME_WIDTH = 500;
@@ -73,13 +70,11 @@ public class VaccineView {
         button.setFont(BUTTON_FONT);
         button.setFocusTraversable(false);
         button.setMaxWidth(Double.MAX_VALUE);
-
         switch (text) {
             case "Side Effect" -> button.setStyle(SIDEEFFECT_BUTTON_STYLE);
-            case "Quit" -> button.setStyle(QUIT_BUTTON_STYLE);
-            default -> button.setStyle(VACCINE_BUTTON_STYLE);
+            case "Quit"        -> button.setStyle(QUIT_BUTTON_STYLE);
+            default            -> button.setStyle(VACCINE_BUTTON_STYLE);
         }
-
         button.setOnAction(e -> onAction.accept(text));
         return button;
     }
@@ -90,7 +85,5 @@ public class VaccineView {
         stage.setY(screenBounds.getMaxY() - stage.getHeight());
     }
 
-    public Stage getStage() {
-        return stage;
-    }
+    public Stage getStage() { return stage; }
 }

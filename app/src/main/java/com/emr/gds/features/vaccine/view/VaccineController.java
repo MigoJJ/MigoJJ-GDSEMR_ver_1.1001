@@ -1,12 +1,9 @@
-package com.emr.gds.features.vaccine;
+package com.emr.gds.features.vaccine.view;
 
+import com.emr.gds.features.vaccine.model.VaccineSideEffect;
+import com.emr.gds.features.vaccine.service.VaccineService;
 import javafx.stage.Stage;
-import com.emr.gds.features.vaccine.VaccineSideEffect;
-import javafx.fxml.FXML;
 
-/**
- * Controller that connects VaccineView actions to VaccineService.
- */
 public class VaccineController {
 
     private final VaccineService service;
@@ -19,23 +16,18 @@ public class VaccineController {
 
     private void handleAction(String text) {
         switch (text) {
-            case "Quit" -> view.getStage().close();
+            case "Quit"        -> view.getStage().close();
             case "Side Effect" -> VaccineSideEffect.open();
             default -> {
                 boolean ok = service.logVaccine(text);
-                if (!ok) {
-                    view.getStage().requestFocus();
-                }
+                if (!ok) view.getStage().requestFocus();
             }
         }
     }
 
     public void show() {
         Stage stage = view.getStage();
-        if (!stage.isShowing()) {
-            stage.show();
-        } else {
-            stage.toFront();
-        }
+        if (!stage.isShowing()) stage.show();
+        else stage.toFront();
     }
 }

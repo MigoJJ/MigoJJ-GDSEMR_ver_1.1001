@@ -3,6 +3,8 @@ package com.emr.gds.repository.sqlite;
 import com.emr.gds.core.db.AppDatabaseManager;
 import com.emr.gds.features.ReferenceFile.ReferenceItem;
 import com.emr.gds.repository.ReferenceRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class SqliteReferenceRepository implements ReferenceRepository {
+
+    private static final Logger logger = LoggerFactory.getLogger(SqliteReferenceRepository.class);
 
     private final AppDatabaseManager dbManager;
     private static final String DB_FILE_NAME = "references.db";
@@ -35,8 +39,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
         try (Statement stmt = getConnection().createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
-            System.err.println("Error creating references table: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("references 테이블 생성 실패", e);
         }
     }
 
@@ -68,8 +71,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error saving reference item: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("참조 항목 저장 실패: id={}", item.getId(), e);
         }
         return item;
     }
@@ -77,7 +79,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
     @Override
     public void delete(ReferenceItem item) {
         if (item.getId() == 0) {
-            System.err.println("Cannot delete reference item without an ID.");
+            logger.warn("ID 없는 참조 항목 삭제 시도 - 무시됨");
             return;
         }
         String sql = "DELETE FROM \"references\" WHERE id = ?";
@@ -85,8 +87,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
             pstmt.setInt(1, item.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Error deleting reference item: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("참조 항목 삭제 실패: id={}", item.getId(), e);
         }
     }
 
@@ -105,8 +106,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("Error finding all reference items: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("참조 항목 전체 조회 실패", e);
         }
         return items;
     }
@@ -127,8 +127,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error finding reference item by ID: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("참조 항목 ID 조회 실패: id={}", id, e);
         }
         return Optional.empty();
     }

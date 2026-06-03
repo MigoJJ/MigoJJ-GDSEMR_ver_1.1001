@@ -5,11 +5,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.function.Consumer;
 
 public class TemplateEditStage {
+
+    private static final Logger logger = LoggerFactory.getLogger(TemplateEditStage.class);
 
     public static void open(Consumer<String> onTemplateSelected) {
         try {
@@ -28,7 +32,7 @@ public class TemplateEditStage {
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("템플릿 편집기 화면 열기 실패", e);
         }
     }
 }

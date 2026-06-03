@@ -4,6 +4,8 @@ import com.emr.gds.IttiaApp;
 import com.emr.gds.input.IAITextAreaManager;
 import com.emr.gds.features.glp1.Glp1SemaglutideMain;
 import com.emr.gds.service.AbbreviationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -41,6 +43,8 @@ import com.emr.gds.features.kcd.KCDDatabaseManagerJavaFX;
  * and other core application functionalities.
  */
 public class IAMButtonAction {
+
+    private static final Logger logger = LoggerFactory.getLogger(IAMButtonAction.class);
 
     //================================================================================
     // Constants
@@ -268,7 +272,7 @@ public class IAMButtonAction {
             try {
             com.emr.gds.features.vaccine.VaccineAction.open();
             } catch (Exception ex) {
-                System.err.println("Failed to launch Vaccine application: " + ex.getMessage());
+                logger.error("Vaccine 앱 실행 실패", ex);
             }
         });
         return b;
@@ -310,8 +314,7 @@ public class IAMButtonAction {
                 kcdStage.toFront();
             }
         } catch (Exception ex) {
-            System.err.println("Failed to launch KCD-9 application:");
-            ex.printStackTrace();
+            logger.error("KCD-9 앱 실행 실패", ex);
         }
     }
 
@@ -323,8 +326,7 @@ public class IAMButtonAction {
                 Stage glp1Stage = new Stage();
                 glp1App.start(glp1Stage);
             } catch (Exception ex) {
-                System.err.println("Failed to open GLP-1 application: " + ex.getMessage());
-                ex.printStackTrace();
+                logger.error("GLP-1 앱 실행 실패", ex);
             }
         }));
         return b;

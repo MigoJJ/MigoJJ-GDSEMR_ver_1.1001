@@ -1,13 +1,18 @@
 package com.emr.gds.features.clinicalLab.db;
 
 import com.emr.gds.features.clinicalLab.model.ClinicalLabItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 
 public class ClinicalLabDatabase {
-    
+
+    private static final Logger logger = LoggerFactory.getLogger(ClinicalLabDatabase.class);
+
     private String getDbUrl() {
         String[] possiblePaths = {
             "app/db/ClinicalLabItemsSqlite3.db",
@@ -18,11 +23,10 @@ public class ClinicalLabDatabase {
         for (String path : possiblePaths) {
             File file = new File(path);
             if (file.exists()) {
-                // System.out.println("ClinicalLabDatabase: DB found at " + file.getAbsolutePath());
                 return "jdbc:sqlite:" + file.getAbsolutePath();
             }
         }
-        System.err.println("ClinicalLabDatabase: DB file not found! Defaulting to app/db/...");
+        logger.warn("ClinicalLabDatabase: DB 파일을 찾을 수 없음 - app/db/ 기본 경로 사용");
         return "jdbc:sqlite:app/db/ClinicalLabItemsSqlite3.db";
     }
 
@@ -38,7 +42,7 @@ public class ClinicalLabDatabase {
                 items.add(mapResultSetToItem(rs));
             }
         } catch (SQLException e) {
-            System.err.println("Error fetching lab items: " + e.getMessage());
+            logger.error("검사 항목 조회 실패", e);
         }
         return items;
     }
@@ -63,19 +67,19 @@ public class ClinicalLabDatabase {
 
         try (Connection conn = DriverManager.getConnection(getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             String param = "%" + query.toLowerCase() + "%";
             for (int i = 1; i <= 11; i++) {
                 pstmt.setString(i, param);
             }
-            
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     items.add(mapResultSetToItem(rs));
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error searching lab items: " + e.getMessage());
+            logger.error("검사 항목 검색 실패: query={}", query, e);
         }
         return items;
     }
@@ -84,7 +88,7 @@ public class ClinicalLabDatabase {
         String sql = "UPDATE clinical_lab_items SET category = ?, test_name = ?, unit = ?, male_range_low = ?, male_range_high = ?, female_range_low = ?, female_range_high = ?, male_reference_range = ?, female_reference_range = ?, codes = ?, comments = ? WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setString(1, item.getCategory());
             pstmt.setString(2, item.getTestName());
             pstmt.setString(3, item.getUnit());
@@ -97,10 +101,10 @@ public class ClinicalLabDatabase {
             pstmt.setString(10, item.getCodes());
             pstmt.setString(11, item.getComments());
             pstmt.setInt(12, item.getId());
-            
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Error updating lab item: " + e.getMessage());
+            logger.error("검사 항목 수정 실패: id={}", item.getId(), e);
         }
     }
 
@@ -108,7 +112,7 @@ public class ClinicalLabDatabase {
         String sql = "INSERT INTO clinical_lab_items (category, test_name, unit, male_range_low, male_range_high, female_range_low, female_range_high, male_reference_range, female_reference_range, codes, comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            
+
             pstmt.setString(1, item.getCategory());
             pstmt.setString(2, item.getTestName());
             pstmt.setString(3, item.getUnit());
@@ -120,17 +124,17 @@ public class ClinicalLabDatabase {
             pstmt.setString(9, item.getFemaleReferenceRange());
             pstmt.setString(10, item.getCodes());
             pstmt.setString(11, item.getComments());
-            
+
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows > 0) {
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        item.setId(rs.getInt(1)); // Set the generated ID back to the item
+                        item.setId(rs.getInt(1));
                     }
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error inserting lab item: " + e.getMessage());
+            logger.error("검사 항목 추가 실패: {}", item.getTestName(), e);
         }
     }
 
@@ -138,11 +142,11 @@ public class ClinicalLabDatabase {
         String sql = "DELETE FROM clinical_lab_items WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(getDbUrl());
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Error deleting lab item: " + e.getMessage());
+            logger.error("검사 항목 삭제 실패: id={}", id, e);
         }
     }
 

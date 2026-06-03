@@ -4,10 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class EkgReportStage {
+
+    private static final Logger logger = LoggerFactory.getLogger(EkgReportStage.class);
 
     public static void open() {
         try {
@@ -19,7 +23,7 @@ public class EkgReportStage {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("EKG 보고서 화면 열기 실패", e);
         }
     }
 }

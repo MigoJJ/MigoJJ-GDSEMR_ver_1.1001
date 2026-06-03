@@ -4,6 +4,8 @@ import com.emr.gds.input.IAITextAreaManager;
 import com.emr.gds.shared.ui.IAMProblemAction;
 import com.emr.gds.service.AbbreviationService;
 import com.emr.gds.service.PlanHistoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,6 +32,8 @@ import javafx.stage.Stage;
  * An editor for creating and managing Plan and Follow-up entries in the EMR.
  */
 public class PlanFollowupAction {
+
+    private static final Logger logger = LoggerFactory.getLogger(PlanFollowupAction.class);
 
     private final IAITextAreaManager textAreaManager;
     private final IAMProblemAction problemAction;
@@ -167,7 +171,7 @@ public class PlanFollowupAction {
                     try {
                         planHistoryService.save("P>", expandedText, null, LocalDate.now().toString());
                     } catch (SQLException ex) {
-                        System.err.println("Failed to save plan history: " + ex.getMessage());
+                        logger.error("플랜 이력 저장 실패", ex);
                     }
                 }).start();
                 editorStage.close();

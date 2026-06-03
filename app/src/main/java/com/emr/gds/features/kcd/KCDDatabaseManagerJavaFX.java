@@ -2,6 +2,8 @@ package com.emr.gds.features.kcd;
 
 import com.emr.gds.input.IAIMain;
 import com.emr.gds.features.kcd.db.DatabaseManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -36,6 +38,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class KCDDatabaseManagerJavaFX {
+
+    private static final Logger logger = LoggerFactory.getLogger(KCDDatabaseManagerJavaFX.class);
 
     private Stage stage;
     public Stage getStage() { return stage; }
@@ -165,7 +169,7 @@ public class KCDDatabaseManagerJavaFX {
                     String value = (String) record.getClass().getMethod("get" + property.substring(0, 1).toUpperCase() + property.substring(1)).invoke(record);
                     return value != null && value.toLowerCase().contains(lowerCaseFilter);
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    logger.warn("KCD 레코드 필터링 중 reflection 오류: property={}", property, ex);
                     return false;
                 }
             }
@@ -187,7 +191,7 @@ public class KCDDatabaseManagerJavaFX {
         task.setOnFailed(e -> {
             showErrorDialog("Database Error", "Failed to load data: " + task.getException().getMessage());
             updateStatus("Error loading data.");
-            task.getException().printStackTrace();
+            logger.error("KCD 데이터 로드 실패", task.getException());
         });
         new Thread(task).start();
     }
@@ -211,7 +215,7 @@ public class KCDDatabaseManagerJavaFX {
                 loadInitialData();
             } catch (SQLException e) {
                 showErrorDialog("Database Error", "Could not save record: " + e.getMessage());
-                e.printStackTrace();
+                logger.error("KCD 레코드 저장 실패", e);
             }
         });
     }
@@ -228,7 +232,7 @@ public class KCDDatabaseManagerJavaFX {
                     loadInitialData();
                 } catch (SQLException e) {
                     showErrorDialog("Database Error", "Could not delete record: " + e.getMessage());
-                    e.printStackTrace();
+                    logger.error("KCD 레코드 삭제 실패", e);
                 }
             }
         });
@@ -258,7 +262,7 @@ public class KCDDatabaseManagerJavaFX {
             updateStatus("Record saved to EMR.");
         } catch (Exception e) {
             showErrorDialog("EMR Save Error", "Error saving to EMR: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("KCD EMR 저장 실패", e);
         }
     }
 

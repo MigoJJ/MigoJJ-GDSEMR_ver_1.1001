@@ -1,5 +1,8 @@
 package com.emr.gds.features.template;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,12 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TemplateRepository {
+
+    private static final Logger logger = LoggerFactory.getLogger(TemplateRepository.class);
     private static final String DB_FILENAME = "emr_templates.db";
-    
-    // Using a method to get connection to avoid keeping it open unnecessarily, 
-    // or we could manage a connection pool. For this scale, opening/closing or a single persistent connection is fine.
-    // Here we'll implement a simple persistent connection pattern similar to the original code.
-    
+
     private Connection conn;
 
     public TemplateRepository() {
@@ -38,9 +39,9 @@ public class TemplateRepository {
                 Files.createDirectories(dbPath.getParent());
             }
         } catch (Exception e) {
-            System.err.println("Failed to create DB directory: " + e.getMessage());
+            logger.warn("DB 디렉토리 생성 실패: {}", dbPath.getParent(), e);
         }
-        
+
         String url = "jdbc:sqlite:" + dbPath.toAbsolutePath();
         this.conn = DriverManager.getConnection(url);
     }
@@ -59,7 +60,7 @@ public class TemplateRepository {
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
-            System.err.println("Failed to create templates table: " + e.getMessage());
+            logger.error("templates 테이블 생성 실패", e);
         }
     }
 
@@ -75,7 +76,7 @@ public class TemplateRepository {
                 ));
             }
         } catch (SQLException e) {
-            System.err.println("Failed to load templates: " + e.getMessage());
+            logger.error("템플릿 목록 로드 실패", e);
         }
         return list;
     }
@@ -87,7 +88,7 @@ public class TemplateRepository {
             ps.setString(2, content);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Failed to create template: " + e.getMessage());
+            logger.error("템플릿 생성 실패: name={}", name, e);
         }
     }
 
@@ -99,7 +100,7 @@ public class TemplateRepository {
             ps.setInt(3, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Failed to update template: " + e.getMessage());
+            logger.error("템플릿 수정 실패: id={}", id, e);
         }
     }
 
@@ -109,7 +110,7 @@ public class TemplateRepository {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Failed to delete template: " + e.getMessage());
+            logger.error("템플릿 삭제 실패: id={}", id, e);
         }
     }
 
@@ -118,7 +119,7 @@ public class TemplateRepository {
             try {
                 conn.close();
             } catch (SQLException e) {
-                System.err.println("Error closing template database: " + e.getMessage());
+                logger.warn("template DB 커넥션 종료 실패", e);
             }
         }
     }

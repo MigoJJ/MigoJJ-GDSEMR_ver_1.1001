@@ -1,14 +1,18 @@
 package com.emr.gds.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 public class I18N {
+
+    private static final Logger logger = LoggerFactory.getLogger(I18N.class);
     private static final String BUNDLE_BASE_NAME = "messages";
     private static ResourceBundle bundle;
 
-    // Static initializer to load bundle based on default locale
     static {
         loadBundle(Locale.getDefault());
     }
@@ -17,8 +21,8 @@ public class I18N {
         try {
             bundle = ResourceBundle.getBundle(BUNDLE_BASE_NAME, locale);
         } catch (MissingResourceException e) {
-            System.err.println("Warning: Resource bundle for locale " + locale + " not found. Using default locale.");
-            bundle = ResourceBundle.getBundle(BUNDLE_BASE_NAME, Locale.ROOT); // Fallback to default
+            logger.warn("리소스 번들을 찾을 수 없음: locale={}, 기본 locale로 대체", locale);
+            bundle = ResourceBundle.getBundle(BUNDLE_BASE_NAME, Locale.ROOT);
         }
     }
 
@@ -26,8 +30,8 @@ public class I18N {
         try {
             return bundle.getString(key);
         } catch (MissingResourceException e) {
-            System.err.println("Warning: Missing resource key '" + key + "' for locale " + bundle.getLocale());
-            return "!!" + key + "!!"; // Indicate missing key
+            logger.warn("리소스 키 누락: key='{}', locale={}", key, bundle.getLocale());
+            return "!!" + key + "!!";
         }
     }
 
@@ -36,7 +40,7 @@ public class I18N {
             loadBundle(newLocale);
         }
     }
-    
+
     public static Locale getLocale() {
         return bundle.getLocale();
     }

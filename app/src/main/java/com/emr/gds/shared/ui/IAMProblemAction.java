@@ -2,6 +2,8 @@ package com.emr.gds.shared.ui;
 
 import com.emr.gds.IttiaApp;
 import com.emr.gds.service.ProblemListService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -33,6 +35,8 @@ import javafx.scene.layout.VBox;
  * - Providing a scratchpad area that mirrors content from the main EMR text areas.
  */
 public class IAMProblemAction {
+
+    private static final Logger logger = LoggerFactory.getLogger(IAMProblemAction.class);
 
     // ================================ 
     // UI Layout Constants
@@ -79,7 +83,7 @@ public class IAMProblemAction {
         try {
             problemListService.initialize();
         } catch (SQLException e) {
-            System.err.println("FATAL: Failed to initialize Problem List store: " + e.getMessage());
+            logger.error("문제 목록 DB 초기화 실패", e);
             throw new RuntimeException("Failed to initialize problem list store", e);
         }
     }
@@ -92,7 +96,7 @@ public class IAMProblemAction {
         try {
             problems.addAll(problemListService.loadAll());
         } catch (SQLException e) {
-            System.err.println("Failed to load problems from database: " + e.getMessage());
+            logger.error("문제 목록 로드 실패", e);
         }
     }
 
@@ -108,7 +112,7 @@ public class IAMProblemAction {
             Platform.runLater(() -> problems.add(problemText));
         } catch (SQLException e) {
             // This error is expected if the problem already exists due to the UNIQUE constraint.
-            System.err.println("Failed to add problem '" + problemText + "'. It might already exist. Details: " + e.getMessage());
+            logger.warn("문제 추가 실패 (이미 존재할 수 있음): {}", problemText, e);
         }
     }
 
@@ -124,7 +128,7 @@ public class IAMProblemAction {
                 Platform.runLater(() -> problems.remove(problemText));
             }
         } catch (SQLException e) {
-            System.err.println("Failed to remove problem '" + problemText + "': " + e.getMessage());
+            logger.error("문제 삭제 실패: {}", problemText, e);
         }
     }
 

@@ -5,6 +5,8 @@ import com.emr.gds.soap.config.PMHConfig;
 import com.emr.gds.soap.presenter.PMHPresenter;
 import com.emr.gds.soap.service.PMHService;
 import com.emr.gds.soap.view.PMHView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
@@ -40,6 +42,8 @@ import javafx.stage.Stage;
  */
 public class EMRPMH extends Application {
 
+    private static final Logger logger = LoggerFactory.getLogger(EMRPMH.class);
+
     private final IAITextAreaManager textAreaManager;
     private final TextArea externalTarget;
     private final Map<String, String> abbrevMap;
@@ -62,7 +66,7 @@ public class EMRPMH extends Application {
         try {
             config = PMHConfig.load("/pmh-config.json");
         } catch (IOException e) {
-            System.err.println("Failed to load PMH configuration in EMRPMH.start: " + e.getMessage());
+            logger.error("PMH 설정 로드 실패 (start)", e);
             // Optionally show an alert to the user here
         }
 
@@ -105,7 +109,7 @@ public class EMRPMH extends Application {
             try {
                 config = PMHConfig.load("/pmh-config.json");
             } catch (IOException e) {
-                System.err.println("Failed to load PMH configuration in EMRPMH.showDialog: " + e.getMessage());
+                logger.error("PMH 설정 로드 실패 (showDialog)", e);
                 // Optionally show an alert to the user here
             }
 

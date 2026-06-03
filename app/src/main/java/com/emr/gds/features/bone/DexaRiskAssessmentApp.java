@@ -2,6 +2,8 @@ package com.emr.gds.features.bone;
 
 import com.emr.gds.input.IAIMain;
 import com.emr.gds.input.IAITextAreaManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javafx.application.Application;
@@ -40,6 +42,8 @@ import javafx.stage.Stage;
  */
 public class DexaRiskAssessmentApp extends Application {
 
+    private static final Logger logger = LoggerFactory.getLogger(DexaRiskAssessmentApp.class);
+
     private TextField scoreField, ageField;
     private ComboBox<String> genderComboBox;
     private TextArea outputTextArea;
@@ -55,7 +59,7 @@ public class DexaRiskAssessmentApp extends Application {
             try {
                 new DexaRiskAssessmentApp().start(new Stage());
             } catch (Exception ex) {
-                ex.printStackTrace();
+                logger.error("DEXA 위험도 평가 화면 열기 실패", ex);
             }
         });
     }

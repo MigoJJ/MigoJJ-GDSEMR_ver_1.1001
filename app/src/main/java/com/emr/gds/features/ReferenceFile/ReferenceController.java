@@ -15,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ReferenceController implements Initializable {
+
+    private static final Logger logger = LoggerFactory.getLogger(ReferenceController.class);
 
     @FXML
     private TextField searchField;
@@ -102,7 +106,7 @@ public class ReferenceController implements Initializable {
         if (this.basePath == null) {
             // Fallback or error handling if basePath is not set.
             // For now, let's just return null if basePath is not properly initialized.
-            System.err.println("Error: ReferenceController.basePath is not set.");
+            logger.warn("basePath가 설정되지 않음");
             return null;
         }
 
@@ -153,7 +157,7 @@ public class ReferenceController implements Initializable {
             }
             new ProcessBuilder(cmd).start();
         } catch (IOException e) {
-            System.err.println("Error opening directory in file explorer: " + e.getMessage());
+            logger.error("파일 탐색기 열기 실패: {}", directory.getAbsolutePath(), e);
             showAlert("Error", "Could not open directory in file explorer.");
         }
     }
@@ -190,8 +194,7 @@ public class ReferenceController implements Initializable {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error opening reference item edit dialog: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("참조 항목 편집 다이얼로그 열기 실패", e);
             showAlert("Error", "Could not open dialog to add reference item.");
         }
     }
@@ -231,8 +234,7 @@ public class ReferenceController implements Initializable {
                     }
                 }
             } catch (IOException e) {
-                System.err.println("Error opening reference item edit dialog: " + e.getMessage());
-                e.printStackTrace();
+                logger.error("참조 항목 편집 다이얼로그 열기 실패", e);
                 showAlert("Error", "Could not open dialog to edit reference item.");
             }
         } else {
@@ -284,7 +286,7 @@ public class ReferenceController implements Initializable {
 
     public void initData() {
         if (referenceService == null) {
-            System.err.println("Error: ReferenceService is not set.");
+            logger.error("ReferenceService가 설정되지 않음");
             return;
         }
         masterData.addAll(referenceService.findAllReferences());

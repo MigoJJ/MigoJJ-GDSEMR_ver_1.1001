@@ -1,5 +1,7 @@
 package com.emr.gds.features.kcd.db;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,6 +17,8 @@ import java.sql.Statement;
  * This class is designed to be run as a standalone application.
  */
 public class CsvToSqliteImporter {
+
+    private static final Logger logger = LoggerFactory.getLogger(CsvToSqliteImporter.class);
 
     private static final String CSV_FILE_PATH = "/home/migowj/git/GDSEMR_ver_0.2/app/src/main/resources/database/KCD-9master_4digit.csv";
     private static final String DB_NAME = "/home/migowj/git/GDSEMR_ver_0.2/app/src/main/resources/database/kcd_database.db";
@@ -38,8 +42,7 @@ public class CsvToSqliteImporter {
             return true;
         }
 
-        System.err.println("Error: CSV file not found at: " + CSV_FILE_PATH);
-        System.err.println("Please check the file path and ensure the file exists.");
+        logger.error("CSV 파일을 찾을 수 없음: {}", CSV_FILE_PATH);
 
         // Provide debugging information about the directory content
         File parentDir = csvFile.getParentFile();
@@ -79,9 +82,9 @@ public class CsvToSqliteImporter {
             processCsvFile(conn, br, insertSql);
 
         } catch (SQLException e) {
-            System.err.println("Database error: " + e.getMessage());
+            logger.error("KCD DB 오류", e);
         } catch (IOException e) {
-            System.err.println("File I/O error: " + e.getMessage());
+            logger.error("KCD CSV 파일 입출력 오류", e);
         }
     }
 
@@ -109,7 +112,7 @@ public class CsvToSqliteImporter {
                     pstmt.addBatch();
                     successfulInserts++;
                 } else {
-                    System.err.println("Warning: Line " + lineNumber + " has insufficient columns (" + values.length + "): " + line);
+                    logger.warn("CSV {}번째 줄 컬럼 부족 ({}개): {}", lineNumber, values.length, line);
                 }
             }
 
@@ -123,7 +126,7 @@ public class CsvToSqliteImporter {
 
         } catch (SQLException e) {
             conn.rollback();
-            System.err.println("Transaction rolled back due to an error: " + e.getMessage());
+            logger.error("트랜잭션 롤백됨", e);
             throw e; // Re-throw to be caught by the main try-catch block
         }
     }

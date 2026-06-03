@@ -221,7 +221,7 @@ public class IttiaApp extends Application {
             loginButton.setDisable(false);
             usernameField.setDisable(false);
             passwordField.setDisable(false);
-            loadTask.getException().printStackTrace();
+            logger.error("데이터 로드 실패", loadTask.getException());
         });
 
         new Thread(loadTask).start();
@@ -351,7 +351,7 @@ public class IttiaApp extends Application {
             try {
                 new MedicationCategory().start(new Stage());
             } catch (Exception ex) {
-                ex.printStackTrace();
+                logger.error("약물 카테고리 화면 열기 실패", ex);
             }
         });
         
@@ -398,7 +398,7 @@ public class IttiaApp extends Application {
                 try {
                     new MedicationCategory().start(new Stage());
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    logger.error("약물 카테고리 화면 열기 실패", ex);
                 }
             });
 
@@ -416,7 +416,7 @@ public class IttiaApp extends Application {
                 try {
                     new AllergyApp().start(new Stage());
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    logger.error("알레르기 화면 열기 실패", ex);
                 }
             });
 
@@ -443,8 +443,7 @@ public class IttiaApp extends Application {
             
             return bottomBar;
         } catch (Exception e) {
-            System.err.println("Error building bottom panel: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("하단 패널 빌드 실패", e);
             // Provide a fallback UI in case of an error
             ToolBar fallbackToolBar = new ToolBar();
             Label errorLabel = new Label("Error loading bottom panel");

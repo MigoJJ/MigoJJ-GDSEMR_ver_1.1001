@@ -8,11 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class FamilyHistoryStage {
+
+    private static final Logger logger = LoggerFactory.getLogger(FamilyHistoryStage.class);
 
     public static void open(IAITextAreaManager textAreaManager, Map<String, String> abbrevMap) {
         try {
@@ -32,7 +36,7 @@ public class FamilyHistoryStage {
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("가족력 화면 열기 실패", e);
         }
     }
 }

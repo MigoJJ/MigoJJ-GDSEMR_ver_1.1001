@@ -11,9 +11,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 
 public class LauncherController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LauncherController.class);
 
     @FXML private VBox categoryContainer;
 
@@ -61,7 +66,7 @@ public class LauncherController {
             stage.setTitle("EMR Helper – " + category);
             StageSizing.fitToScreen(stage, 0.7, 0.8, 900, 650);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            logger.error("약물 카테고리 화면 열기 실패: {}", category, ex);
         }
     }
 

@@ -16,7 +16,7 @@ wrapper/dists/
 # Build outputs
 **/build/
 **/bin/
-out/
+/out/
 *.class
 hs_err_pid*
 replay_pid*

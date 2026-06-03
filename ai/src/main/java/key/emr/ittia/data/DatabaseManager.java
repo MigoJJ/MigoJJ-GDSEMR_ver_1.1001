@@ -72,9 +72,10 @@ public class DatabaseManager {
             pstmt.setString(2, prompt.getCategory());
             pstmt.executeUpdate();
 
-            ResultSet generatedKeys = pstmt.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                prompt.setId(generatedKeys.getInt(1));
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    prompt.setId(generatedKeys.getInt(1));
+                }
             }
         } catch (SQLException e) {
             throw new IllegalStateException("Error adding prompt", e);

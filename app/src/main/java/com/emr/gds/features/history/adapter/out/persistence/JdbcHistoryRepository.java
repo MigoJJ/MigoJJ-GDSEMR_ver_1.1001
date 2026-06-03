@@ -5,7 +5,6 @@ import com.emr.gds.features.history.domain.ConditionCategory;
 import com.emr.gds.features.history.domain.HistoryPersistenceException;
 import com.emr.gds.features.history.domain.HistoryRepository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,8 +28,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
                      "category TEXT NOT NULL, " +
                      "name TEXT NOT NULL, " +
                      "UNIQUE(category, name))";
-        try (Connection conn = AppDatabaseManager.getInstance().getHistoryConnection();
-             Statement stmt = conn.createStatement()) {
+        try (Statement stmt = AppDatabaseManager.getInstance().getHistoryConnection().createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to initialize history database.", e);
@@ -43,9 +41,8 @@ public class JdbcHistoryRepository implements HistoryRepository {
         List<String> results = new ArrayList<>();
         String sql = "SELECT name FROM conditions WHERE category = ? ORDER BY name";
         
-        try (Connection conn = AppDatabaseManager.getInstance().getHistoryConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+
             pstmt.setString(1, category.name());
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
@@ -63,9 +60,8 @@ public class JdbcHistoryRepository implements HistoryRepository {
     public void addCondition(ConditionCategory category, String conditionName) {
         String sql = "INSERT OR IGNORE INTO conditions (category, name) VALUES (?, ?)";
         
-        try (Connection conn = AppDatabaseManager.getInstance().getHistoryConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+
             pstmt.setString(1, category.name());
             pstmt.setString(2, conditionName);
             pstmt.executeUpdate();
@@ -79,9 +75,8 @@ public class JdbcHistoryRepository implements HistoryRepository {
     @Override
     public void updateCondition(ConditionCategory category, String oldName, String newName) {
         String sql = "UPDATE conditions SET name = ? WHERE category = ? AND name = ?";
-        try (Connection conn = AppDatabaseManager.getInstance().getHistoryConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+
             pstmt.setString(1, newName);
             pstmt.setString(2, category.name());
             pstmt.setString(3, oldName);
@@ -100,9 +95,8 @@ public class JdbcHistoryRepository implements HistoryRepository {
     @Override
     public void deleteCondition(ConditionCategory category, String conditionName) {
         String sql = "DELETE FROM conditions WHERE category = ? AND name = ?";
-        try (Connection conn = AppDatabaseManager.getInstance().getHistoryConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+
             pstmt.setString(1, category.name());
             pstmt.setString(2, conditionName);
             pstmt.executeUpdate();

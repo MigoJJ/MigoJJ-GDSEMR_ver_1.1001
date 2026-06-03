@@ -140,21 +140,18 @@ public class ReferenceController implements Initializable {
 
 
     private void openDirectoryInFileExplorer(File directory) {
+        if (!directory.exists() || !directory.isDirectory()) return;
         try {
-            if (directory.exists() && directory.isDirectory()) {
-                // For Windows
-                if (System.getProperty("os.name").toLowerCase().contains("win")) {
-                    Runtime.getRuntime().exec("explorer.exe " + directory.getAbsolutePath());
-                }
-                // For Mac
-                else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-                    Runtime.getRuntime().exec("open " + directory.getAbsolutePath());
-                }
-                // For Linux
-                else if (System.getProperty("os.name").toLowerCase().contains("nix") || System.getProperty("os.name").toLowerCase().contains("nux")) {
-                    Runtime.getRuntime().exec("xdg-open " + directory.getAbsolutePath());
-                }
+            String os = System.getProperty("os.name").toLowerCase();
+            String[] cmd;
+            if (os.contains("win")) {
+                cmd = new String[]{"explorer.exe", directory.getAbsolutePath()};
+            } else if (os.contains("mac")) {
+                cmd = new String[]{"open", directory.getAbsolutePath()};
+            } else {
+                cmd = new String[]{"xdg-open", directory.getAbsolutePath()};
             }
+            new ProcessBuilder(cmd).start();
         } catch (IOException e) {
             System.err.println("Error opening directory in file explorer: " + e.getMessage());
             showAlert("Error", "Could not open directory in file explorer.");
@@ -266,7 +263,7 @@ public class ReferenceController implements Initializable {
     private void handleFind() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select File to Find Reference");
-        File file = fileChooser.showOpenDialog(new Stage());
+        File file = fileChooser.showOpenDialog(referenceTable.getScene().getWindow());
         if (file != null) {
             System.out.println("Selected file for Find: " + file.getAbsolutePath());
             showAlert("Find Action", "Searching for content related to: " + file.getName());

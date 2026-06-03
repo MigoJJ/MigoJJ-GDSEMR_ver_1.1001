@@ -32,8 +32,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
                 directory_path TEXT NOT NULL
             );
             """;
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement()) {
+        try (Statement stmt = getConnection().createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
             System.err.println("Error creating references table: " + e.getMessage());
@@ -50,8 +49,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
             sql = "UPDATE \"references\" SET category = ?, contents = ?, directory_path = ? WHERE id = ?";
         }
 
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, item.getCategory());
             pstmt.setString(2, item.getContents());
@@ -83,8 +81,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
             return;
         }
         String sql = "DELETE FROM \"references\" WHERE id = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, item.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -97,8 +94,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
     public List<ReferenceItem> findAll() {
         List<ReferenceItem> items = new ArrayList<>();
         String sql = "SELECT id, category, contents, directory_path FROM \"references\" ORDER BY category";
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
+        try (Statement stmt = getConnection().createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 items.add(new ReferenceItem(
@@ -118,8 +114,7 @@ public class SqliteReferenceRepository implements ReferenceRepository {
     @Override
     public Optional<ReferenceItem> findById(int id) {
         String sql = "SELECT id, category, contents, directory_path FROM \"references\" WHERE id = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {

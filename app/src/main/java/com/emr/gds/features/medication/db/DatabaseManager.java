@@ -232,7 +232,7 @@ public class DatabaseManager {
                 }
                 conn.commit();
             } catch (SQLException e) {
-                conn.rollback();
+                try { conn.rollback(); } catch (SQLException re) { e.addSuppressed(re); }
                 throw e;
             }
         } catch (SQLException e) {

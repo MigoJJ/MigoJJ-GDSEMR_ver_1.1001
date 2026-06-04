@@ -1,11 +1,10 @@
-package com.emr.gds.features.ekg;
+package com.emr.gds.features.ekg.view;
 
 import com.emr.gds.input.IAIMain;
 import com.emr.gds.input.IAITextAreaManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ButtonType;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -14,11 +13,8 @@ import java.time.format.DateTimeFormatter;
 
 public class EkgReportController {
 
-    @FXML
-    private TextArea findingsArea;
-
-    @FXML
-    private TextArea summaryArea;
+    @FXML private TextArea findingsArea;
+    @FXML private TextArea summaryArea;
 
     @FXML
     public void initialize() {
@@ -54,9 +50,8 @@ Others:
                 reportText,
                 summaryText.isEmpty() ? "(none)" : summaryText);
 
-        manager.focusArea(5); // Target 'O>' area
+        manager.focusArea(5);
         manager.insertLineIntoFocusedArea(stampedReport);
-        
         showAlert(Alert.AlertType.INFORMATION, "Success", "EKG report saved to EMR.");
     }
 
@@ -69,7 +64,6 @@ Others:
     @FXML
     private void handleReference() {
         try {
-            // Note: This path assumes running from project root, similar to legacy behavior.
             File file = new File("src/main/resources/text/EKG_reference.odt").getAbsoluteFile();
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(file);

@@ -1,4 +1,4 @@
-package com.emr.gds.features.ekg;
+package com.emr.gds.features.ekg.view;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -7,11 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.Parent;
 
-/**
- * Pure view for the simple EKG report form.
- */
+/** Pure view for the simple EKG report form. */
 public class EkgSimpleReportView {
 
     private final TextArea ekgFindingsArea = new TextArea("""
@@ -43,15 +40,7 @@ EKG INTERPRETATION REPORT
         return container;
     }
 
-    public TextArea getEkgFindingsArea() {
-        return ekgFindingsArea;
-    }
-
-    public Button getSaveButton() {
-        return saveButton;
-    }
-
-    public Label getStatusLabel() {
-        return statusLabel;
-    }
+    public TextArea getEkgFindingsArea() { return ekgFindingsArea; }
+    public Button getSaveButton() { return saveButton; }
+    public Label getStatusLabel() { return statusLabel; }
 }

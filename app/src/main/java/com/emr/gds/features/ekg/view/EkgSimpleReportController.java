@@ -1,11 +1,10 @@
-package com.emr.gds.features.ekg;
+package com.emr.gds.features.ekg.view;
 
+import com.emr.gds.features.ekg.service.EkgReportService;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
-/**
- * Controller that wires the EKG view with the service.
- */
+/** Controller that wires the EKG view with the service. */
 public class EkgSimpleReportController {
 
     private final EkgSimpleReportView view;
@@ -27,7 +26,6 @@ public class EkgSimpleReportController {
             showAlert(Alert.AlertType.WARNING, "Please enter findings before saving.");
             return;
         }
-
         var formatted = service.formatReport(raw);
         boolean ok = service.pushToEmr(formatted);
         if (ok) {

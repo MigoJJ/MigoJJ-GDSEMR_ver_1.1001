@@ -2,6 +2,7 @@ package com.emr.gds.repository.sqlite;
 
 import com.emr.gds.core.db.AppDatabaseManager;
 import com.emr.gds.repository.AbbreviationRepository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,12 +16,27 @@ import java.util.Map;
  */
 public class SqliteAbbreviationRepository implements AbbreviationRepository {
 
-    private final AppDatabaseManager dbManager = AppDatabaseManager.getInstance();
+    private final Connection testConnection;
+
+    public SqliteAbbreviationRepository() {
+        this.testConnection = null;
+    }
+
+    /** 테스트 전용 생성자. */
+    SqliteAbbreviationRepository(Connection testConnection) {
+        this.testConnection = testConnection;
+    }
+
+    private Connection conn() throws SQLException {
+        return testConnection != null
+                ? testConnection
+                : AppDatabaseManager.getInstance().getAbbreviationConnection();
+    }
 
     @Override
     public Map<String, String> findAll() throws SQLException {
         Map<String, String> abbreviations = new HashMap<>();
-        Connection conn = dbManager.getAbbreviationConnection();
+        Connection conn = conn();
         ensureTable(conn);
 
         try (Statement stmt = conn.createStatement();
@@ -34,7 +50,7 @@ public class SqliteAbbreviationRepository implements AbbreviationRepository {
 
     @Override
     public void insert(String shortForm, String fullForm) throws SQLException {
-        Connection conn = dbManager.getAbbreviationConnection();
+        Connection conn = conn();
         ensureTable(conn);
 
         String sql = "INSERT INTO abbreviations (short, full) VALUES (?, ?)";
@@ -47,7 +63,7 @@ public class SqliteAbbreviationRepository implements AbbreviationRepository {
 
     @Override
     public void update(String originalShortForm, String newShortForm, String newFullForm) throws SQLException {
-        Connection conn = dbManager.getAbbreviationConnection();
+        Connection conn = conn();
         ensureTable(conn);
 
         String sql = "UPDATE abbreviations SET short = ?, full = ? WHERE short = ?";
@@ -61,7 +77,7 @@ public class SqliteAbbreviationRepository implements AbbreviationRepository {
 
     @Override
     public boolean delete(String shortForm) throws SQLException {
-        Connection conn = dbManager.getAbbreviationConnection();
+        Connection conn = conn();
         ensureTable(conn);
 
         String sql = "DELETE FROM abbreviations WHERE short = ?";

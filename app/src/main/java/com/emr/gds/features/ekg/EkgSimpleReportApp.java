@@ -1,8 +1,8 @@
 package com.emr.gds.features.ekg;
 
-import com.emr.gds.features.ekg.EkgReportService;
-import com.emr.gds.features.ekg.EkgSimpleReportController;
-import com.emr.gds.features.ekg.EkgSimpleReportView;
+import com.emr.gds.features.ekg.service.EkgReportService;
+import com.emr.gds.features.ekg.view.EkgSimpleReportController;
+import com.emr.gds.features.ekg.view.EkgSimpleReportView;
 import com.emr.gds.infrastructure.service.EmrBridgeService;
 import javafx.scene.Scene;
 import javafx.stage.Modality;

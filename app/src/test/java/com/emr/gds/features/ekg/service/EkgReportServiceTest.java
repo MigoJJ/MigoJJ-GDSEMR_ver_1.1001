@@ -1,4 +1,4 @@
-package com.emr.gds.features.ekg;
+package com.emr.gds.features.ekg.service;
 
 import com.emr.gds.infrastructure.service.EmrBridgeService;
 import org.junit.jupiter.api.BeforeEach;

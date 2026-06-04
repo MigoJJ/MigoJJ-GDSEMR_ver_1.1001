@@ -10,14 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class JdbcHistoryRepository implements HistoryRepository {
 
-    private static final Logger LOGGER = Logger.getLogger(JdbcHistoryRepository.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(JdbcHistoryRepository.class);
 
     // 테스트에서 인메모리 DB를 주입하기 위한 seam
     private final Connection testConnection;
@@ -36,7 +37,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
     private Connection conn() throws SQLException {
         return testConnection != null
                 ? testConnection
-                : conn();
+                : AppDatabaseManager.getInstance().getHistoryConnection();
     }
 
     private void initializeDatabase() {
@@ -48,7 +49,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
         try (Statement stmt = conn().createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to initialize history database.", e);
+            LOGGER.error("히스토리 DB 초기화 실패", e);
             throw new HistoryPersistenceException("Failed to initialize history database.", e);
         }
     }
@@ -67,7 +68,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to load conditions for " + category + ".", e);
+            LOGGER.error("조건 목록 로드 실패: {}", category, e);
             throw new HistoryPersistenceException("Failed to load conditions for " + category + ".", e);
         }
         return results;
@@ -84,7 +85,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
             pstmt.executeUpdate();
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to add condition '" + conditionName + "' for " + category + ".", e);
+            LOGGER.error("조건 추가 실패: {} in {}", conditionName, category, e);
             throw new HistoryPersistenceException("Failed to add condition '" + conditionName + "' for " + category + ".", e);
         }
     }
@@ -104,7 +105,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
             }
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to update condition '" + oldName + "' to '" + newName + "'.", e);
+            LOGGER.error("조건 수정 실패: {} → {}", oldName, newName, e);
             throw new HistoryPersistenceException("Failed to update condition.", e);
         }
     }
@@ -119,7 +120,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
             pstmt.executeUpdate();
             
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to delete condition '" + conditionName + "'.", e);
+            LOGGER.error("조건 삭제 실패: {}", conditionName, e);
             throw new HistoryPersistenceException("Failed to delete condition.", e);
         }
     }

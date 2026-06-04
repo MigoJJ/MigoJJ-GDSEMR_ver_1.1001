@@ -4,8 +4,7 @@ import com.emr.gds.input.IAIMain;
 import com.emr.gds.input.IAITextAreaManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -43,6 +42,7 @@ import javafx.stage.Stage;
 public class DexaRiskAssessmentApp extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(DexaRiskAssessmentApp.class);
+    private final DexaRiskService riskService = new DexaRiskService();
 
     private TextField scoreField, ageField;
     private ComboBox<String> genderComboBox;
@@ -223,58 +223,13 @@ public class DexaRiskAssessmentApp extends Application {
             boolean hasStones = stonesCheckBox.isSelected();
             boolean isTScore = tScoreRadioButton.isSelected();
 
-            String report = generateReport(score, isTScore, age, gender, hasFracture, isMenopausal, onHrt, hasTah, hasStones);
+            String report = riskService.generateReport(score, isTScore, age, gender, hasFracture, isMenopausal, onHrt, hasTah, hasStones);
             outputTextArea.setText(report);
 
         } catch (NumberFormatException ex) {
             showAlert(Alert.AlertType.ERROR, "Invalid Input", "Please enter valid numbers for Score and Age.");
         }
     }
-
-    private String generateReport(double score, boolean isTScore, int age, String gender,
-                                  boolean hasFracture, boolean isMenopausal, boolean onHrt, boolean hasTah, boolean hasStones) {
-
-        String scoreType = isTScore ? "T-Score" : "Z-Score";
-        String diagnosis;
-
-        if (isTScore) {
-            if (score <= -2.5) {
-                diagnosis = hasFracture ? "Severe Osteoporosis" : "Osteoporosis";
-            } else if (score < -1.0) {
-                diagnosis = "Osteopenia";
-            } else {
-                diagnosis = "Normal Bone Density";
-            }
-        } else {
-            diagnosis = (score <= -2.0) ? "Below expected range for age" : "Within expected range for age";
-        }
-
-        String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("< DEXA Report - %s >\n", date));
-        sb.append(String.format("Diagnosis: %s (%s: %.1f)\n", diagnosis, scoreType, score));
-        sb.append(String.format("Patient: %d-year-old %s\n", age, gender));
-
-        if ("Female".equals(gender)) {
-            sb.append(String.format("Clinical Factors → Menopausal: %s | Fragility Fx: %s | On HRT: %s | TAH: %s | Kidney Stones: %s\n",
-                    boolToYN(isMenopausal), boolToYN(hasFracture), boolToYN(onHrt), boolToYN(hasTah), boolToYN(hasStones)));
-        } else {
-            sb.append(String.format("Clinical Factors → Fragility Fx: %s | Kidney Stones: %s\n",
-                    boolToYN(hasFracture), boolToYN(hasStones)));
-        }
-
-        sb.append("\nComment>\n");
-        sb.append(String.format("# %s based on %s of %.1f.\n", diagnosis, scoreType, score));
-        if (isTScore && score <= -2.5) {
-            sb.append("# Consider bisphosphonate, denosumab, or anabolic therapy.\n");
-        } else if (isTScore && score <= -1.0) {
-            sb.append("# Lifestyle modification, calcium + vitamin D, repeat DEXA in 2–3 years.\n");
-        }
-        return sb.toString();
-    }
-
-    private String boolToYN(boolean b) { return b ? "Yes" : "No"; }
 
     private void saveToEmr() {
         String report = outputTextArea.getText();

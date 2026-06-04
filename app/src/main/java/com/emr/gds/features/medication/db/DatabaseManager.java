@@ -3,12 +3,14 @@ package com.emr.gds.features.medication.db;
 import com.emr.gds.core.db.AppDatabaseManager;
 import com.emr.gds.features.medication.model.MedicationGroup;
 import com.emr.gds.features.medication.model.MedicationItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Logger;
 
 public class DatabaseManager {
-    private static final Logger LOGGER = Logger.getLogger(DatabaseManager.class.getName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseManager.class);
     private static final String DEFAULT_DB_FILENAME = "med_data.db";
     private final String dbFileName;
 
@@ -56,7 +58,7 @@ public class DatabaseManager {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.severe("Failed to initialize database at " + url + ": " + e.getMessage());
+            LOGGER.error("DB 초기화 실패: {}", url, e);
         }
     }
 
@@ -135,7 +137,7 @@ public class DatabaseManager {
             }
 
         } catch (SQLException e) {
-            LOGGER.severe("Failed to load from DB (" + url + "): " + e.getMessage());
+            LOGGER.error("DB 로드 실패: {}", url, e);
         }
     }
 
@@ -215,7 +217,7 @@ public class DatabaseManager {
                 throw e;
             }
         } catch (SQLException e) {
-            LOGGER.severe("Failed to save to DB: " + e.getMessage());
+            LOGGER.error("DB 저장 실패", e);
         }
     }
 

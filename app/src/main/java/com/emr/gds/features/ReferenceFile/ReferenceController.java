@@ -267,7 +267,7 @@ public class ReferenceController implements Initializable {
         fileChooser.setTitle("Select File to Find Reference");
         File file = fileChooser.showOpenDialog(referenceTable.getScene().getWindow());
         if (file != null) {
-            System.out.println("Selected file for Find: " + file.getAbsolutePath());
+            logger.info("참조 파일 선택: {}", file.getAbsolutePath());
             showAlert("Find Action", "Searching for content related to: " + file.getName());
             // In a real application, you would implement search logic based on the file
         }

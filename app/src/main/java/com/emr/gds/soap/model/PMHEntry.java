@@ -7,6 +7,9 @@ public class PMHEntry {
     private boolean isDefaultDotTarget;
     private CategoryType type;
 
+    // Jackson 역직렬화를 위한 기본 생성자
+    public PMHEntry() {}
+
     public PMHEntry(String category, boolean selected, String notes, boolean isDefaultDotTarget, CategoryType type) {
         this.category = category;
         this.selected = selected;
@@ -47,6 +50,10 @@ public class PMHEntry {
 
     public void setType(CategoryType type) {
         this.type = type;
+    }
+
+    public void setDefaultDotTarget(boolean defaultDotTarget) {
+        this.isDefaultDotTarget = defaultDotTarget;
     }
 
     // Methods expected by PMHService

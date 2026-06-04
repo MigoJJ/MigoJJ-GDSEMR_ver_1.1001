@@ -38,14 +38,13 @@ System.err.println(e.getMessage());
 
 ```
 features/{module}/
-├── {Module}Action.java   ← 외부 진입점 (public API)
-├── model/                ← 데이터 클래스, 상수
-├── service/              ← 비즈니스 로직
-└── view/                 ← JavaFX UI (Stage, Controller, View)
+├── {Module}Action.java      ← 외부 진입점 (public API, 루트 유지)
+├── model/                   ← 순수 데이터 클래스, 상수 (JavaFX 없음)
+├── service/                 ← 비즈니스 로직 (테스트 가능)
+└── view/                    ← JavaFX UI (Stage, Controller, Pane)
 ```
 
-완료된 모듈: `allergy`, `history` (헥사고날), `vaccine`
-진행 중: `ekg`, `thyroid`
+**완료된 모듈:** `allergy`, `history`(헥사고날), `vaccine`, `ekg`, `thyroid`, `kcd`, `clinicalLab`
 
 ---
 
@@ -55,4 +54,34 @@ features/{module}/
 private static final Logger logger = LoggerFactory.getLogger(ClassName.class);
 ```
 
-모든 클래스에 선언. `java.util.logging.Logger` 대신 SLF4J(`org.slf4j`) 사용.
+- 모든 클래스에 선언. `java.util.logging.Logger` 절대 금지.
+- SLF4J(`org.slf4j.Logger`) + Logback 백엔드 사용.
+- CLI 도구(`GeminiHealthCheck`, `ModelListPrinter`, `CsvToSqliteImporter`)는
+  stdout 진행 상태에 `System.out.println` 허용, stderr 오류는 logger 사용.
+
+---
+
+## 테스트 작성 원칙
+
+- **Repository**: 인메모리 SQLite (`jdbc:sqlite::memory:`) + package-private 생성자 seam
+- **Service**: Mockito mock + AssertJ assertions
+- **의료 로직**: 경계값(boundary) 케이스 필수 포함
+- **JavaFX UI 클래스**: 단위 테스트 불필요 — 통합 테스트 대상
+
+**테스트 JVM 인수** (build.gradle.kts):
+```kotlin
+jvmArgs(
+    "-XX:+EnableDynamicAgentLoading",
+    "-Dnet.bytebuddy.experimental=true",
+    "--add-opens=java.base/java.lang=ALL-UNNAMED"
+)
+```
+Java 25 + Mockito 5.14.2 조합 필수. (Mockito 5.11.0 이하 ByteBuddy 호환 불가)
+
+---
+
+## Import 규칙
+
+- `java.sql.*` / `java.util.*` 와일드카드 **금지** → 명시적 import 사용
+- `javafx.scene.control.*` 는 컨트롤이 다수일 때 예외적으로 허용
+- 미사용 import는 즉시 제거

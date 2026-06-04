@@ -1,4 +1,7 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.view;
+
+import com.emr.gds.features.thyroid.model.ThyroidEntry;
+import com.emr.gds.features.thyroid.service.ThyroidSummaryService;
 
 import com.emr.gds.context.AppContext;
 import com.emr.gds.input.IAIMain;

@@ -1,4 +1,4 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.service;
 
 import java.util.ArrayList;
 import java.util.List;

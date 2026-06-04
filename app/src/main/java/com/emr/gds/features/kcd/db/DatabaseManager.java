@@ -1,7 +1,7 @@
 package com.emr.gds.features.kcd.db;
 
 import com.emr.gds.features.kcd.KCDDatabaseManagerJavaFX;
-import com.emr.gds.features.kcd.KCDRecord;
+import com.emr.gds.features.kcd.model.KCDRecord;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

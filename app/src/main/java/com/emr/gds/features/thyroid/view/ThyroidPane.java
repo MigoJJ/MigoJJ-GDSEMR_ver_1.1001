@@ -1,4 +1,6 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.view;
+
+import com.emr.gds.features.thyroid.model.ThyroidEntry;
 
 import com.emr.gds.util.StageSizing;
 import com.emr.gds.features.medication.controller.MainController;

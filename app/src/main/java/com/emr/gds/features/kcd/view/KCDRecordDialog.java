@@ -1,4 +1,6 @@
-package com.emr.gds.features.kcd;
+package com.emr.gds.features.kcd.view;
+
+import com.emr.gds.features.kcd.model.KCDRecord;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.ButtonType;

@@ -1,5 +1,9 @@
 package com.emr.gds.features.thyroid;
 
+import com.emr.gds.features.thyroid.model.ThyroidEntry;
+import com.emr.gds.features.thyroid.view.ThyroidPane;
+import com.emr.gds.features.thyroid.view.ThyroidPregnancy;
+
 import com.emr.gds.util.StageSizing;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -1,4 +1,4 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;

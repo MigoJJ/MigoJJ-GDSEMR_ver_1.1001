@@ -1,4 +1,6 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.service;
+
+import com.emr.gds.features.thyroid.service.ThyroidRiskCalculator;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

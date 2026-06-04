@@ -1,4 +1,7 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.service;
+
+import com.emr.gds.features.thyroid.model.ThyroidEntry;
+import com.emr.gds.features.thyroid.service.ThyroidSummaryService;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,6 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.service;
+
+import com.emr.gds.features.thyroid.model.ThyroidEntry;
 
 import java.util.ArrayList;
 import java.util.List;

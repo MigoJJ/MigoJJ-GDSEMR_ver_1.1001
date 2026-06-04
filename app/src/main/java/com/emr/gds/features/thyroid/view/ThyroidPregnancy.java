@@ -1,4 +1,4 @@
-package com.emr.gds.features.thyroid;
+package com.emr.gds.features.thyroid.view;
 
 import com.emr.gds.infrastructure.service.EmrBridgeService;
 import com.emr.gds.util.StageSizing;

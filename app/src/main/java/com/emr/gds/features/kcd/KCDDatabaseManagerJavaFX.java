@@ -1,5 +1,8 @@
 package com.emr.gds.features.kcd;
 
+import com.emr.gds.features.kcd.model.KCDRecord;
+import com.emr.gds.features.kcd.view.KCDRecordDialog;
+
 import com.emr.gds.core.db.AppDatabaseManager;
 import com.emr.gds.input.IAIMain;
 import com.emr.gds.features.kcd.db.DatabaseManager;

@@ -5,6 +5,7 @@ import com.emr.gds.features.history.domain.ConditionCategory;
 import com.emr.gds.features.history.domain.HistoryPersistenceException;
 import com.emr.gds.features.history.domain.HistoryRepository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,8 +19,24 @@ public class JdbcHistoryRepository implements HistoryRepository {
 
     private static final Logger LOGGER = Logger.getLogger(JdbcHistoryRepository.class.getName());
 
+    // 테스트에서 인메모리 DB를 주입하기 위한 seam
+    private final Connection testConnection;
+
     public JdbcHistoryRepository() {
+        this.testConnection = null;
         initializeDatabase();
+    }
+
+    /** 테스트 전용 생성자 — 프로덕션 코드에서 호출 금지. */
+    JdbcHistoryRepository(Connection testConnection) {
+        this.testConnection = testConnection;
+        initializeDatabase();
+    }
+
+    private Connection conn() throws SQLException {
+        return testConnection != null
+                ? testConnection
+                : conn();
     }
 
     private void initializeDatabase() {
@@ -28,7 +45,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
                      "category TEXT NOT NULL, " +
                      "name TEXT NOT NULL, " +
                      "UNIQUE(category, name))";
-        try (Statement stmt = AppDatabaseManager.getInstance().getHistoryConnection().createStatement()) {
+        try (Statement stmt = conn().createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to initialize history database.", e);
@@ -41,7 +58,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
         List<String> results = new ArrayList<>();
         String sql = "SELECT name FROM conditions WHERE category = ? ORDER BY name";
         
-        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn().prepareStatement(sql)) {
 
             pstmt.setString(1, category.name());
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -60,7 +77,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
     public void addCondition(ConditionCategory category, String conditionName) {
         String sql = "INSERT OR IGNORE INTO conditions (category, name) VALUES (?, ?)";
         
-        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn().prepareStatement(sql)) {
 
             pstmt.setString(1, category.name());
             pstmt.setString(2, conditionName);
@@ -75,7 +92,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
     @Override
     public void updateCondition(ConditionCategory category, String oldName, String newName) {
         String sql = "UPDATE conditions SET name = ? WHERE category = ? AND name = ?";
-        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn().prepareStatement(sql)) {
 
             pstmt.setString(1, newName);
             pstmt.setString(2, category.name());
@@ -95,7 +112,7 @@ public class JdbcHistoryRepository implements HistoryRepository {
     @Override
     public void deleteCondition(ConditionCategory category, String conditionName) {
         String sql = "DELETE FROM conditions WHERE category = ? AND name = ?";
-        try (PreparedStatement pstmt = AppDatabaseManager.getInstance().getHistoryConnection().prepareStatement(sql)) {
+        try (PreparedStatement pstmt = conn().prepareStatement(sql)) {
 
             pstmt.setString(1, category.name());
             pstmt.setString(2, conditionName);

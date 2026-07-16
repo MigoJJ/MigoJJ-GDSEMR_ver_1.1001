@@ -1,7 +1,7 @@
 plugins {
     application
     alias(libs.plugins.javafx)
-    jacoco
+    // jacoco (disabled for Java 25 compatibility)
 }
 
 val javafxVersion: String by project
@@ -22,10 +22,11 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.junit)
     testImplementation(libs.assertj.core)
-    testImplementation(libs.testfx.core)
-    testImplementation(libs.testfx.junit5)
+    // testImplementation(libs.testfx.core)
+    // testImplementation(libs.testfx.junit5)
     testImplementation(libs.sqlite.jdbc)
     testRuntimeOnly(libs.junit.engine)
+    testRuntimeOnly(libs.junit.launcher)
 }
 
 tasks.withType<Test> {
@@ -40,19 +41,19 @@ tasks.withType<Test> {
     )
 }
 
-// JaCoCo Configuration
-jacoco {
-    toolVersion = "0.8.12"
-}
-
-tasks.jacocoTestReport {
-    dependsOn(tasks.test)
-    reports {
-        xml.required = true
-        html.required = true
-        csv.required = false
-    }
-}
+// JaCoCo Configuration (disabled for Java 25 compatibility)
+// jacoco {
+//     toolVersion = "0.8.12"
+// }
+//
+// tasks.jacocoTestReport {
+//     dependsOn(tasks.test)
+//     reports {
+//         xml.required = true
+//         html.required = true
+//         csv.required = false
+//     }
+// }
 
 javafx {
     version = javafxVersion

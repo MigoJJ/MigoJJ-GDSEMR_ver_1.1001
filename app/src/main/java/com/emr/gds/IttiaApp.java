@@ -14,7 +14,7 @@ import com.emr.gds.features.ekg.EkgReportStage;
 import com.emr.gds.features.ekg.EkgSimpleReportApp;
 import com.emr.gds.features.ekg.EkgQuickInterpreter;
 import com.emr.gds.features.allergy.AllergyApp;
-import com.emr.gds.features.bone.DexaRiskAssessmentApp;
+import com.emr.gds.features.bone.adapter.in.ui.DexaStage;
 import com.emr.gds.input.IAIFreqFrame;
 import com.emr.gds.input.IAIFxTextAreaManager;
 import com.emr.gds.input.IAIMain;
@@ -327,9 +327,7 @@ public class IttiaApp extends Application {
         // --- Diagnostic Tools (Accented) ---
         Button dexaButton = new Button("DEXA");
         dexaButton.getStyleClass().add("button-accent");
-        dexaButton.setOnAction(e -> {
-            DexaRiskAssessmentApp.open();
-        });
+        dexaButton.setOnAction(e -> DexaStage.open());
         
         Button ekgButton = new Button("EKG");
         ekgButton.getStyleClass().add("button-accent");

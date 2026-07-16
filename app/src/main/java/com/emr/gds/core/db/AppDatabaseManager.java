@@ -34,6 +34,7 @@ public class AppDatabaseManager {
     private Connection referenceConnection;
     private Connection planHistoryConnection;
     private Connection problemConnection;
+    private Connection dexaReportsConnection;
 
     private AppDatabaseManager() {}
 
@@ -76,6 +77,13 @@ public class AppDatabaseManager {
             problemConnection = openConnection("prolist.db");
         }
         return problemConnection;
+    }
+
+    public synchronized Connection getDexaReportsConnection() throws SQLException {
+        if (dexaReportsConnection == null || dexaReportsConnection.isClosed()) {
+            dexaReportsConnection = openConnection("dexa_reports.db");
+        }
+        return dexaReportsConnection;
     }
 
     // ── App reference-data path resolver ─────────────────────────────────
@@ -123,6 +131,7 @@ public class AppDatabaseManager {
         closeQuietly(referenceConnection);     referenceConnection     = null;
         closeQuietly(planHistoryConnection);   planHistoryConnection   = null;
         closeQuietly(problemConnection);       problemConnection       = null;
+        closeQuietly(dexaReportsConnection);   dexaReportsConnection   = null;
     }
 
     // ── Internal helpers ──────────────────────────────────────────────────

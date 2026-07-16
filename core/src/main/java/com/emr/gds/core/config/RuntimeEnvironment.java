@@ -11,6 +11,7 @@ public class RuntimeEnvironment {
     private static final String APP_DIR_NAME = ".gdsemr";
     private static final String DB_SUBDIR = "db";
     private static final String LOG_SUBDIR = "logs";
+    private static final String IMAGE_SUBDIR = "images";
 
     /**
      * Returns the base directory for application data.
@@ -43,5 +44,19 @@ public class RuntimeEnvironment {
      */
     public static Path resolveDatabasePath(String fileName) {
         return getDatabaseDirectory().resolve(fileName);
+    }
+
+    /**
+     * Returns the standardized path for image files.
+     */
+    public static Path getImageDirectory() {
+        return getBaseDataDirectory().resolve(IMAGE_SUBDIR);
+    }
+
+    /**
+     * Resolves an image file path.
+     */
+    public static Path resolveImagePath(String relativeName) {
+        return getImageDirectory().resolve(relativeName);
     }
 }

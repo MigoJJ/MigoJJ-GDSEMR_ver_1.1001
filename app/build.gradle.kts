@@ -1,6 +1,7 @@
 plugins {
     application
     alias(libs.plugins.javafx)
+    jacoco
 }
 
 val javafxVersion: String by project
@@ -11,16 +12,20 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":ai"))
 
-    implementation("org.xerial:sqlite-jdbc:$sqliteVersion")
-    runtimeOnly("ch.qos.logback:logback-classic:1.5.16")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1") // Added for JSON parsing
+    implementation(libs.sqlite.jdbc)
+    runtimeOnly(libs.logback.classic)
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-    testImplementation("org.mockito:mockito-core:5.14.2")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
-    testImplementation("org.assertj:assertj-core:3.25.3")
-    testImplementation("org.xerial:sqlite-jdbc:$sqliteVersion")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // Test Dependencies
+    testImplementation(libs.junit.api)
+    testImplementation(libs.junit.params)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.junit)
+    testImplementation(libs.assertj.core)
+    testImplementation(libs.testfx.core)
+    testImplementation(libs.testfx.junit5)
+    testImplementation(libs.sqlite.jdbc)
+    testRuntimeOnly(libs.junit.engine)
 }
 
 tasks.withType<Test> {
@@ -30,8 +35,23 @@ tasks.withType<Test> {
         "-Dnet.bytebuddy.experimental=true",
         "--add-opens=java.base/java.lang=ALL-UNNAMED",
         "--add-opens=java.base/java.util=ALL-UNNAMED",
-        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED"
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens=javafx.graphics/com.sun.glass.ui=ALL-UNNAMED"
     )
+}
+
+// JaCoCo Configuration
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
 }
 
 javafx {

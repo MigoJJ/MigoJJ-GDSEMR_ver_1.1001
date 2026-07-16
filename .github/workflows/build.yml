@@ -1,40 +1,56 @@
-name: Java CI with Gradle
+name: GDSEMR Build & Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      matrix:
+        java-version: ['25']
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up JDK 25
-      uses: actions/setup-java@v4
-      with:
-        java-version: '25'
-        distribution: 'temurin'
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          cache: gradle
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v4
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
 
-    - name: Compile all modules
-      run: ./gradlew compileJava compileTestJava
+      - name: Build with Gradle
+        run: ./gradlew build -x test --no-daemon
 
-    - name: Run tests (core, app, server)
-      run: ./gradlew :core:test :app:test :server:test
-      env:
-        DISPLAY: ""
+      - name: Run tests
+        run: ./gradlew test --no-daemon
 
-    - name: Upload test reports
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-reports
-        path: |
-          **/build/reports/tests/test/
-          **/build/test-results/
-        retention-days: 7
+      - name: Generate code coverage report
+        run: ./gradlew jacocoTestReport --no-daemon
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.java-version }}
+          path: |
+            */build/reports/tests/test/
+            */build/reports/jacoco/
+
+      - name: Check test failure
+        if: failure()
+        run: echo "❌ Tests failed - please review"
+
+      - name: Check build success
+        if: success()
+        run: echo "✅ Build and tests passed"
